@@ -1,20 +1,27 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+import { Component, inject, OnInit } from '@angular/core';
+import { UserService } from 'src/app/core/services/user.service';
+import { Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
+  imports: []
 })
 export class LoginPage implements OnInit {
+
+  private userService = inject(UserService)
+  private router = inject(Router)
 
   constructor() { }
 
   ngOnInit() {
   }
+
+  login(){
+    this.userService.authenticateUser();
+    // this.router.navigate(['/home'])
+  } 
 
 }
