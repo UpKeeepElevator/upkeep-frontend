@@ -1,13 +1,12 @@
 import { Routes } from '@angular/router';
+import { adminChildGuard, adminGuard } from './core/guards/admin.guard';
+import { techChildGuard, techGuard } from './core/guards/tech.guard';
+import { clientChildGuard, clientGuard } from './core/guards/client.guard';
 
 export const routes: Routes = [
   {
-    path: 'home',
-    loadComponent: () => import('./home/home.page').then((m) => m.HomePage),
-  },
-  {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'login',
     pathMatch: 'full',
   },
   {
@@ -15,15 +14,21 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/login/login.page').then( m => m.LoginPage)
   },
   {
-    path: 'hoome-app',
-    loadComponent: () => import('./pages/hoome-app/hoome-app.page').then( m => m.HoomeAppPage)
+    path: 'administrator',
+    loadComponent: () => import('./pages/admin/home-admin/home-admin.page').then( m => m.HomeAdminPage),
+    canActivate: [adminGuard],
+    canActivateChild: [adminChildGuard]
   },
   {
-    path: 'home-app',
-    loadComponent: () => import('./pages/home-app/home-app.page').then( m => m.HomeAppPage)
+    path: 'technician',
+    loadComponent: () => import('./pages/tech/home-tech/home-tech.page').then( m => m.HomeTechPage),
+    canActivate: [techGuard],
+    canActivateChild: [techChildGuard]
   },
   {
-    path: 'login',
-    loadComponent: () => import('./pages/login/login.page').then( m => m.LoginPage)
+    path: 'client',
+    loadComponent: () => import('./pages/client/home-client/home-client.page').then( m => m.HomeClientPage),
+    canActivate: [clientGuard],
+    canActivateChild: [clientChildGuard]
   },
 ];
