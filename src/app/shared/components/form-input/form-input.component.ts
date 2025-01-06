@@ -68,16 +68,16 @@ export class FormInputComponent  implements ControlValueAccessor, OnInit {
 
     switch(option){
       case 'login':
-        this.style = 'w-full border border-solid border-white rounded  text-black p-2'
+        this.style = 'w-full bg-transparent border border-solid border-white rounded-2xl  text-white py-2 px-4'
         break;
       case 'admin':
-        this.style = 'w-full border border-solid border-grenadier-700 rounded  text-black p-2'
+        this.style = 'w-full bg-transparent border border-solid border-grenadier-600 rounded-2xl  text-black p-2'
         break;
       case 'tech':
-        this.style = 'w-full border border-solid border-sea-green-700 rounded  text-black p-2'
+        this.style = 'w-full bg-transparent border border-solid border-sea-green-700 rounded-2xl  text-black p-2'
         break;
       default:
-        this.style = 'w-full border border-solid border-white rounded  text-white p-2'
+        this.style = 'w-full bg-transparent border border-solid border-white rounded-2xl  text-white p-2'
         break;
     }
   }

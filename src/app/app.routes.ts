@@ -31,4 +31,8 @@ export const routes: Routes = [
     canActivate: [clientGuard],
     canActivateChild: [clientChildGuard]
   },
+  {
+    path: 'password-recovery',
+    loadComponent: () => import('./pages/password-recovery/password-recovery.page').then( m => m.PasswordRecoveryPage)
+  },
 ];

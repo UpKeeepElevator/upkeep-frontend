@@ -1,19 +1,20 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { UserService } from 'src/app/core/services/user.service';
-import { ActivatedRoute, Router} from '@angular/router';
+import { ActivatedRoute, Router, RouterLink} from '@angular/router';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { user } from 'src/app/core/models/User';
 import { fake_user } from 'src/app/core/utils/Fake_users';
 import { ToastService } from 'src/app/core/services/toast.service';
-import { IonContent } from "@ionic/angular/standalone";
+import { IonContent, IonIcon } from "@ionic/angular/standalone";
 import { FormInputComponent } from "../../shared/components/form-input/form-input.component";
+import { addIcons } from 'ionicons';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
   standalone: true,
-  imports: [ReactiveFormsModule, FormInputComponent, FormInputComponent]
+  imports: [IonIcon, ReactiveFormsModule, FormInputComponent]
 })
 export class LoginPage implements OnInit {
 
@@ -46,6 +47,10 @@ export class LoginPage implements OnInit {
       if(url[0].path.includes('login'))
         this.loginForm.reset()
     })
+
+    addIcons({
+      star: '/assets/icon/star.svg'
+    })
   }
 
   login(){
@@ -71,5 +76,11 @@ export class LoginPage implements OnInit {
       this.toast.toastError('Usuario o contraseña incorrecto', 'bottom')
     }
     // this.router.navigate(['/home'])
-  } 
+  }
+  
+  passwordRecovery(){
+    // console.log('hola')
+    this.router.navigate(['/password-recovery'])
+
+  }
 }
