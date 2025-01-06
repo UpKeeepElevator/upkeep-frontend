@@ -17,8 +17,20 @@ export class UserService {
     return userData.cod_user != 0
   }
 
-  authenticateUser(){
-    const userData: user = USERS_LIST[1]
-    this.user.set(userData)  
+  authenticateUser(userInput: user){
+    const userData = USERS_LIST
+    const userFind = userData.find(x => x.user === userInput.user)
+
+    if(userFind && userFind.password === userInput.password){
+      this.user.set(userFind)
+      return true 
+    }else{
+      return false
+    }
+    // this.user.set(userData)  
+  }
+
+  getUser(){
+    return this.user()
   }
 }
