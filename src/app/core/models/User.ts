@@ -1,6 +1,8 @@
 export interface user {
     cod_user: number
     name_user: string;
+    user: string;
+    password: string;
     role: role;
 }
 

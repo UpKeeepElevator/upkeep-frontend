@@ -12,4 +12,12 @@
   </ion-header>
 </ion-content> -->
 
-<button (click)="login()">login</button>
+<form action="" [formGroup]="loginForm" (ngSubmit)="login()">
+  <label for="user">Correo Electrónico</label>
+  <input type="text" formControlName="user" name="user" />
+
+  <label for="password">Contraseña</label>
+  <input type="password" name="password" formControlName="password" />
+
+  <button type="submit" [disabled]="loginForm.invalid">Subir</button>
+</form>
