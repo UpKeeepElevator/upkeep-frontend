@@ -2,6 +2,7 @@ import { computed, Injectable, signal } from '@angular/core';
 import { user } from '../models/User';
 import { fake_user, USERS_LIST } from '../utils/Fake_users';
 
+export const TOKEN_KEY = 'token'
 @Injectable({
   providedIn: 'root'
 })
