@@ -1,20 +1,26 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+import { RouterOutlet } from '@angular/router';
+import {  IonIcon } from '@ionic/angular/standalone';
+import { addIcons } from 'ionicons';
 
 @Component({
   selector: 'app-home-tech',
   templateUrl: './home-tech.page.html',
   styleUrls: ['./home-tech.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
+  imports: [IonIcon, RouterOutlet]
 })
 export class HomeTechPage implements OnInit {
 
-  constructor() { }
+  constructor() {
+    addIcons({
+      menu: '/assets/icon/menu.svg',
+      home: '/assets/icon/imagotipo.svg'
+    })
+  }
 
-  ngOnInit() {
+  ngOnInit(): void {
+    
   }
 
 }

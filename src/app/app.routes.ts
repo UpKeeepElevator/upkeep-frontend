@@ -22,6 +22,7 @@ export const routes: Routes = [
   {
     path: 'technician',
     loadComponent: () => import('./pages/tech/home-tech/home-tech.page').then( m => m.HomeTechPage),
+    loadChildren: () => import('./pages/tech/tech.routes').then(m => m.TECH_ROUTES),
     canActivate: [techGuard],
     canActivateChild: [techChildGuard]
   },
