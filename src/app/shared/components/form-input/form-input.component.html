@@ -1,0 +1,17 @@
+@let localControl = control();
+
+<input
+  [formControl]="localControl"
+  [type]="type()"
+  (blur)="onTouched()"
+  [placeholder]="placeholder()"
+  [className]="style"
+/>
+
+@if(localControl.invalid && (localControl.dirty || localControl.touched)){
+<div class="text-red-600">
+  @if(localControl.errors?.['required']){
+  <span>{{ errorMessage() }}</span>
+  }
+</div>
+}

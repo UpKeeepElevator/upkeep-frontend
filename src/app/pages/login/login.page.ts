@@ -6,13 +6,14 @@ import { user } from 'src/app/core/models/User';
 import { fake_user } from 'src/app/core/utils/Fake_users';
 import { ToastService } from 'src/app/core/services/toast.service';
 import { IonContent } from "@ionic/angular/standalone";
+import { FormInputComponent } from "../../shared/components/form-input/form-input.component";
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
   standalone: true,
-  imports: [ReactiveFormsModule]
+  imports: [ReactiveFormsModule, FormInputComponent, FormInputComponent]
 })
 export class LoginPage implements OnInit {
 
