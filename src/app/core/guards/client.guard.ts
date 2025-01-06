@@ -6,11 +6,11 @@ import { ToastService } from '../services/toast.service';
 export const clientGuard: CanActivateFn = (route, state) => {
   const userService = inject(UserService)
   const toast = inject(ToastService)
-  const user = computed(() => userService.user())
+  const role = computed(() => userService.role())
   const router = inject(Router)
   
   
-  if(user().role.cod_role === 3){
+  if(role().id_role === 3){
     return true;
   }else{
     router.navigate(['/login'])
@@ -22,11 +22,11 @@ export const clientGuard: CanActivateFn = (route, state) => {
 export const clientChildGuard: CanActivateChildFn = (route, state) => {
   const userService = inject(UserService)
   const toast = inject(ToastService)
-  const user = computed(() => userService.user())
+  const role = computed(() => userService.role())
   const router = inject(Router)
 
   
-  if(user().role.cod_role === 3){
+  if(role().id_role === 3){
     return true;
   
   }else{
