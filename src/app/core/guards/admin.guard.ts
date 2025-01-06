@@ -9,10 +9,10 @@ export const adminGuard: CanActivateFn = (route, state) => {
   const userService = inject(UserService)
   const toast = inject(ToastService)
   const router = inject(Router)
-  const user = computed(() => userService.user())
+  const role = computed(() => userService.role())
 
 
-  if(user().role.cod_role === 1){
+  if(role().id_role === 2){
     return true;
   }else{
     router.navigate(['/login'])
@@ -25,10 +25,10 @@ export const adminChildGuard: CanActivateChildFn = (rotue, state) => {
   
   const userService = inject(UserService)
   const toast = inject(ToastService)
-  const user = computed(() => userService.user())
+  const role = computed(() => userService.role())
   const router = inject(Router)
   
-  if(user().role.cod_role === 1){
+  if(role().id_role === 2){
     return true;
 
   }else{

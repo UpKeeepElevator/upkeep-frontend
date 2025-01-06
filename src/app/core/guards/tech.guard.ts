@@ -6,11 +6,11 @@ import { ToastService } from '../services/toast.service';
 export const techGuard: CanActivateFn = (route, state) => {
   const userService = inject(UserService)
   const toast = inject(ToastService)
-  const user = computed(() => userService.user())
+  const role = computed(() => userService.role())
   const router = inject(Router)
 
   
-  if(user().role.cod_role === 2){
+  if(role().id_role === 1 || !role().id_role){
     return true;
   
   }else{
@@ -23,11 +23,11 @@ export const techGuard: CanActivateFn = (route, state) => {
 export const techChildGuard: CanActivateChildFn = (route, state) => {
   const userService = inject(UserService)
   const toast = inject(ToastService)
-  const user = computed(() => userService.user())
+  const role = computed(() => userService.role())
   const router = inject(Router)
 
   
-  if(user().role.cod_role === 2){
+  if(role().id_role === 1 || !role().id_role){
     return true;
   
   }else{

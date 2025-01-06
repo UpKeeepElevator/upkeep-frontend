@@ -2,7 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { UserService } from 'src/app/core/services/user.service';
 import { ActivatedRoute, Router, RouterLink} from '@angular/router';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { user } from 'src/app/core/models/User';
+import { role, user, userAuth } from 'src/app/core/models/User';
 import { fake_user } from 'src/app/core/utils/Fake_users';
 import { ToastService } from 'src/app/core/services/toast.service';
 import { IonContent, IonIcon } from "@ionic/angular/standalone";
@@ -26,7 +26,7 @@ export class LoginPage implements OnInit {
   
 
   protected loginForm = this.fb.group({
-    user: ['', Validators.required],
+    user: ['', [Validators.required, Validators.email]],
     password: ['', Validators.required]
   })
 
@@ -44,8 +44,10 @@ export class LoginPage implements OnInit {
 
   ngOnInit() {
     this.route.url.subscribe(url => {
-      if(url[0].path.includes('login'))
+      if(url[0].path.includes('login')){
         this.loginForm.reset()
+        localStorage.clear()
+      }
     })
 
     addIcons({
@@ -55,26 +57,33 @@ export class LoginPage implements OnInit {
 
   login(){
     
-    const user: user = {...fake_user, password: this.Password, user: this.User.toLowerCase() }
-    const authenticated = this.userService.authenticateUser(user);
-
-    if(authenticated){
-      const userAuthenticated = this.userService.getUser()
-      const role = userAuthenticated.role
-
-      switch(role.cod_role){
-        case 1:
-          this.router.navigate(['/administrator'])
-          break
-        case 2:
-          this.router.navigate(['/technician'])
-          break
-        case 3:
-          this.router.navigate(['/client'])
-      }
-    }else{
-      this.toast.toastError('Usuario o contraseña incorrecto', 'bottom')
+    const user: userAuth = {
+      user: this.User,
+      password: this.Password
     }
+    
+    this.userService.authenticateUser(user).subscribe(response => {
+      if(response){
+        const role = this.userService.getRole()
+        
+        switch(role.id_role){
+          case 2:
+            this.router.navigate(['/administrator'])
+            break
+          case 1:
+            this.router.navigate(['/technician'])
+            break
+          case 3:
+            this.router.navigate(['/client'])
+            break;
+          default:
+            this.router.navigate(['/technician'])
+            break
+        }
+      }else{
+        this.toast.toastError('Usuario o contraseña incorrecto', 'bottom')
+      }
+    })
     // this.router.navigate(['/home'])
   }
   
