@@ -76,9 +76,6 @@ export class LoginPage implements OnInit {
           case 3:
             this.router.navigate(['/client'])
             break;
-          default:
-            this.router.navigate(['/technician'])
-            break
         }
       }else{
         this.toast.toastError('Usuario o contraseña incorrecto', 'bottom')

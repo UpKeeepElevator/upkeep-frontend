@@ -10,7 +10,7 @@ export const techGuard: CanActivateFn = (route, state) => {
   const router = inject(Router)
 
   
-  if(role().id_role === 1 || !role().id_role){
+  if(role().id_role === 1){
     return true;
   
   }else{
@@ -27,7 +27,7 @@ export const techChildGuard: CanActivateChildFn = (route, state) => {
   const router = inject(Router)
 
   
-  if(role().id_role === 1 || !role().id_role){
+  if(role().id_role === 1){
     return true;
   
   }else{

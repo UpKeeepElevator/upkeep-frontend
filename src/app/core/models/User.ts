@@ -5,7 +5,7 @@ export interface UserApi{
     nombres: string,
     rutaId: number|null,
     telefono: string,
-    roles: role[]
+    roles: RoleApi[]
 }
 
 export interface UserAuthApi{
@@ -29,4 +29,9 @@ export interface userAuth{
 export interface role{
     id_role: number;
     name_role: string;
+}
+
+export interface RoleApi{
+    rolId: number;
+    rolDescripcion: string
 }

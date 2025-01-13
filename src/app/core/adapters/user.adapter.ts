@@ -1,4 +1,4 @@
-import { UserApi, UserAuthApi, user, userAuth } from "../models/User";
+import { RoleApi, UserApi, UserAuthApi, role, user, userAuth } from "../models/User";
 
 export const userTransform = (user : UserApi) => {
     const userApp: user = {
@@ -6,7 +6,7 @@ export const userTransform = (user : UserApi) => {
         name_user: user.nombres,
         email: user.correo,
         phone: user.telefono,
-        role: user.roles,
+        role: roleTransform(user.roles),
         id_route: user.rutaId,
         token: user.token
     }
@@ -20,4 +20,16 @@ export const userAuthTransform = (user: userAuth) => {
     }
 
     return userAuth
+}
+
+const roleTransform = (roles: RoleApi[]) => {
+
+    const roleApp : role[] = roles.map(role => {
+        const roleTrans: role = {
+            id_role: role.rolId,
+            name_role: role.rolDescripcion
+        }
+        return roleTrans
+    })
+    return roleApp
 }
