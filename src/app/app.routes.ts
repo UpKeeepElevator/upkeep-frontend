@@ -29,6 +29,7 @@ export const routes: Routes = [
   {
     path: 'client',
     loadComponent: () => import('./pages/client/home-client/home-client.page').then( m => m.HomeClientPage),
+    loadChildren: () => import('./pages/client/client.routes').then(m =>  m.CLIENT_ROUTES),
     canActivate: [clientGuard],
     canActivateChild: [clientChildGuard]
   },
