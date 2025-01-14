@@ -1,3 +1,44 @@
-<p>
-  sidebar-client works!
-</p>
+<aside class="flex flex-col gap-10 font-urbanist pt-10 pb-5 w-full h-full">
+  <div class="flex items-center justify-center gap-4">
+    <img src="/assets/logo.png" width="80px" height="80px" alt="" />
+    <h3 class="font-bold">UpKeep</h3>
+  </div>
+  <div class="flex flex-col justify-between items-center px-5 h-full">
+    <div class="flex flex-col gap-4 w-full">
+      <app-sidebar-nav-button
+        (click)="closeModal()"
+        name="Tablero"
+        type="client"
+        route="/client/dashboard"
+        icon="home-client"
+        [currentRoute]="currentRoute"
+      />
+      <app-sidebar-nav-button
+        (click)="closeModal()"
+        name="Reportar"
+        type="client"
+        route=""
+        icon="megaphone-client"
+        [currentRoute]="currentRoute"
+      />
+      <app-sidebar-nav-button
+        (click)="closeModal()"
+        name="Historial"
+        type="client"
+        route="/client/history"
+        icon="doc-client"
+        [currentRoute]="currentRoute"
+      />
+    </div>
+    <div class="w-full">
+      <app-sidebar-nav-button
+        (click)="logout()"
+        name="Salir"
+        type="client"
+        route=""
+        icon="leave-client"
+        [currentRoute]="currentRoute"
+      />
+    </div>
+  </div>
+</aside>

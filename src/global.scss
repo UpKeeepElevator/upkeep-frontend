@@ -42,7 +42,7 @@
 @tailwind components;
 @tailwind utilities;
 
-.sidebar {
+ion-modal.sidebar::part(content) {
     --width: 50%;
     --height: 100%;
     --background: theme("colors.mercury.200");

@@ -7,13 +7,12 @@ export const clientGuard: CanActivateFn = (route, state) => {
   const userService = inject(UserService)
   const toast = inject(ToastService)
   const role = computed(() => userService.role())
-  const router = inject(Router)
   
   
   if(role().id_role === 3){
     return true;
   }else{
-    router.navigate(['/login'])
+    userService.logout()
     toast.toastError('No estas autorizado', 'bottom')
     return false
   }
@@ -23,14 +22,13 @@ export const clientChildGuard: CanActivateChildFn = (route, state) => {
   const userService = inject(UserService)
   const toast = inject(ToastService)
   const role = computed(() => userService.role())
-  const router = inject(Router)
 
   
   if(role().id_role === 3){
     return true;
   
   }else{
-    router.navigate(['/login'])
+    userService.logout()
     toast.toastError('No estas autorizado', 'bottom')
     return false    
   }

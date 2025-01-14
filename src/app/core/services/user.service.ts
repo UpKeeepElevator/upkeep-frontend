@@ -9,6 +9,8 @@ import { TypeofExpression } from '@angular/compiler';
 import { Router } from '@angular/router';
 
 export const TOKEN_KEY = 'token'
+export const ROLES_KEY = 'roles'
+export const USER_KEY = 'user'
 @Injectable({
   providedIn: 'root'
 })
@@ -20,7 +22,19 @@ export class UserService {
   public user = signal<user>(fake_user)
   public role = signal<role>(fake_role)
 
-  constructor() { }
+  constructor() {
+    const userStorage = localStorage.getItem(USER_KEY)
+    const rolesStorage = localStorage.getItem(ROLES_KEY)
+
+    if(userStorage){
+      this.user.set(JSON.parse(userStorage))
+    }
+
+    if(rolesStorage){
+      const lstRoles: role[] = JSON.parse(rolesStorage)
+      this.role.set(lstRoles[0])
+    }
+  }
 
   verifyAuth(){
     const user = computed(() => this.user())
@@ -37,8 +51,10 @@ export class UserService {
         next: (response) =>{
           if(response.token)
             localStorage.setItem(TOKEN_KEY, JSON.stringify(response.token))
-          this.user.set(response)
+            localStorage.setItem(USER_KEY, JSON.stringify(response))
+            this.user.set(response)
           if(response.role.length){
+            localStorage.setItem(ROLES_KEY, JSON.stringify(response.role))
             this.role.set(response.role[0])
           }
           obj.next(true)
