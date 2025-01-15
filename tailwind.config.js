@@ -32,7 +32,7 @@ module.exports = {
         },
         mercury: {
           50: "#f7f8f7",
-          100: "#eef0ef",
+          100: "#E7E7E7",
           200: "#dfe2e0",
           300: "#b9c0bb",
           400: "#939d96",

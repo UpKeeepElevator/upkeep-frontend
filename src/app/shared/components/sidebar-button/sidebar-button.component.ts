@@ -2,7 +2,7 @@ import { Component, inject, input, OnInit } from '@angular/core';
 import { addIcons } from 'ionicons';
 import { SidebarClientComponent } from 'src/app/pages/client/sidebar-client/sidebar-client.component';
 import { SidebarTechComponent } from 'src/app/pages/tech/sidebar-tech/sidebar-tech.component';
-import { ModalController, IonIcon } from '@ionic/angular/standalone'
+import { ModalController, IonIcon, AnimationController } from '@ionic/angular/standalone'
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -17,7 +17,35 @@ export class SidebarButtonComponent {
   
   private _modal = inject(ModalController)
   private routes = inject(ActivatedRoute)
+  private animation = inject(AnimationController)
   private currentRoute = ''
+  private enterAnimation = (baseEl: HTMLElement) => {
+    const root = baseEl.shadowRoot;
+
+    const backdropAnimation = this.animation
+      .create()
+      .addElement(root!.querySelector('ion-backdrop')!)
+      .fromTo('opacity', '0.01', 'var(--backdrop-opacity)');
+
+      const wrapperAnimation = this.animation
+      .create()
+      .addElement(root!.querySelector('.modal-wrapper')!)
+      .keyframes([
+        { offset: 0, opacity: '0', transform: 'translate(-500px)' },
+        { offset: 1, opacity: '0.99', transform: 'translate(0)' },
+      ]);
+
+    return this.animation
+      .create()
+      .addElement(baseEl)
+      .easing('ease-out')
+      .duration(200)
+      .addAnimation([backdropAnimation, wrapperAnimation]);
+  };
+
+  private leaveAnimation = (baseEl: HTMLElement) => {
+    return this.enterAnimation(baseEl).direction('reverse');
+  };
 
   constructor() {
     addIcons({
@@ -36,6 +64,9 @@ export class SidebarButtonComponent {
         component: SidebarClientComponent,
         cssClass: 'sidebar',
         backdropDismiss:true,
+        animated: true,
+        enterAnimation: this.enterAnimation,
+        leaveAnimation: this.leaveAnimation,
         componentProps: {
           currentRoute: this.currentRoute
         }
@@ -46,6 +77,9 @@ export class SidebarButtonComponent {
         component: SidebarTechComponent,
         cssClass: 'sidebar',
         backdropDismiss:true,
+        animated: true,
+        enterAnimation: this.enterAnimation,
+        leaveAnimation: this.leaveAnimation,
         componentProps: {
           currentRoute: this.currentRoute
         }
