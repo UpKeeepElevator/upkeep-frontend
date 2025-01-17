@@ -9,9 +9,11 @@
 />
 
 @if(localControl.invalid && (localControl.dirty || localControl.touched)){
-<div class="text-golden-bell-600">
+<div class="text-golden-bell-600 h-5">
   @if(localControl.errors?.['required']){
   <span>{{ errorMessage() }}</span>
   }
 </div>
+} @else {
+<div class="h-5"></div>
 }
