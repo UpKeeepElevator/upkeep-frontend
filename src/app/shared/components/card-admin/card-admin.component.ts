@@ -1,4 +1,4 @@
-import { Component, Input, input, OnInit } from '@angular/core';
+import { Component, input, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { DashboardTile } from 'src/app/pages/admin/gestionar-admin/gestionar-admin.page';
 
@@ -6,20 +6,17 @@ import { DashboardTile } from 'src/app/pages/admin/gestionar-admin/gestionar-adm
   selector: 'app-card-admin',
   templateUrl: './card-admin.component.html',
   styleUrls: ['./card-admin.component.scss'],
-  imports: [RouterLink]
+  imports: [RouterLink],
 })
+export class CardAdminComponent implements OnInit {
+  tile = input.required<DashboardTile>();
 
-export class CardAdminComponent  implements OnInit {
-   @Input({required: true}) 
-   tile: DashboardTile = {
-    title: '',
-    imageSrc: '',
-    borderColor: ''
-  }
-
-
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {}
 
+  GetClass = () =>
+    `px-20 py-16 rounded-3xl border border-solid max-md:px-5 max-md:max-w-full hover:bg-gray-300 ${
+      this.tile().borderColor
+    }`;
 }
