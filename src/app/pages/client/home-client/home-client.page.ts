@@ -1,18 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+import { RouterOutlet } from '@angular/router';
+import { SlideupReportComponent } from "../../../shared/components/slideup-report/slideup-report.component";
 
 @Component({
   selector: 'app-home-client',
   templateUrl: './home-client.page.html',
   styleUrls: ['./home-client.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
+  imports: [RouterOutlet, SlideupReportComponent]
 })
 export class HomeClientPage implements OnInit {
 
-  constructor() { }
+
+  constructor() {}
 
   ngOnInit() {
   }
