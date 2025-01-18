@@ -1,0 +1,40 @@
+<div class="flex flex-col items-center bg-mercury-200 w-20 h-screen border rounded border-golden-bell-600">
+      <!-- Logo Section -->
+      <div class="mt-4 mb-8">
+        <button routerLink="/administrator" class="object-contain self-stretch w-full aspect-[1.06]">
+          <img src="/assets/logo.png" alt=""/>
+        </button>
+      </div>
+
+      <div class="flex flex-col space-y-8 border-t ">
+        <!-- Home Icon -->
+        <div [ngClass]="{'border rounded-lg border-golden-bell-600': currentRoute==='Dashboard'}" class=" w-10 h-10  flex items-center justify-center">
+          <button class="m-1" routerLink="/administrator">
+          <img src="/assets/icon/home2.svg" alt=""/>
+        </button>
+        </div>
+
+        <!-- Edit Icon -->
+        <div [ngClass]="{'border rounded-lg border-golden-bell-600': currentRoute==='gestionar'}" class="border w-10 h-10 flex items-center justify-center">
+          <button class="m-1" routerLink="/administrator/gestionar">
+          <img src="/assets/icon/edit.svg" alt=""/>
+        </button>
+        </div>
+
+        <!-- Reportes Icon -->
+        <div [ngClass]="{'border rounded-lg border-golden-bell-600': currentRoute==='reportes'}" class="border w-10 h-10 flex items-center justify-center">
+          <button class="m-1" routerLink="/administrator/reportes">
+          <img src="/assets/icon/stats.svg" alt=""/>
+        </button>
+        </div>
+      </div>
+
+      <!-- Logout Icon -->
+      <div class="mt-auto mb-4">
+        <div class="w-8 h-8 flex items-center justify-center">
+          <button (click)= logOut()>
+          <img src="/assets/icon/sign-out.svg" alt=""/>
+        </button>
+        </div>
+      </div>
+    </div>

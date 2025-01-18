@@ -1,0 +1,77 @@
+
+      <div
+          class="flex ml-10 flex-col grow shrink-0 items-start self-start mt-40 basis-0 w-fit max-md:mt-10 max-md:max-w-full"
+        >
+          <h1 class="text-6xl font-semibold text-black max-md:text-4xl">
+            Gestionar
+          </h1>
+          <div class="self-stretch mt-20 max-md:mt-10 max-md:max-w-full">
+            <div class="flex gap-5 max-md:flex-col">
+              @for(tile of topTiles; track $index){
+                <div 
+          
+                class="flex flex-col w-[33%] max-md:ml-0 max-md:w-full"
+                role="button"
+                tabindex="0"
+                [attr.aria-label]="tile.title + ' section'"
+              >
+                <div class="flex flex-col w-full max-md:mt-10 max-md:max-w-full">
+                  <div
+                    [class]="'px-20 py-16 rounded-3xl border border-solid max-md:px-5 max-md:max-w-full border-' + tile.borderColor"
+              
+                  >
+                    <div [routerLink]="tile.route" class="flex gap-5 max-md:flex-col">
+                      <div class="flex flex-col w-[46%] max-md:ml-0 max-md:w-full">
+                        <div class="self-stretch my-auto text-5xl font-semibold text-black max-md:mt-10 max-md:text-4xl">
+                          {{tile.title}}
+                        </div>
+                      </div>
+                      <div class="flex flex-col ml-5 w-[54%] max-md:ml-0 max-md:w-full">
+                        <img
+                          loading="lazy"
+                          [src]="tile.imageSrc"
+                          class="object-contain grow shrink-0 max-w-full aspect-[1.28] w-[160px] max-md:mt-10"
+                          [alt]="tile.title + ' icon'"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              }
+            </div>
+          </div>
+          <div class="mt-32 max-w-full w-[1130px] max-md:mt-10">
+            <div class="flex gap-5 max-md:flex-col">
+              @for(tile of bottomTiles; track $index){
+              <div 
+                class="flex flex-col w-6/12 max-md:ml-0 max-md:w-full"
+                role="button"
+                tabindex="0"
+                [attr.aria-label]="tile.title + ' section'"
+              >
+                <div class="flex flex-col w-full max-md:mt-10 max-md:max-w-full">
+                  <div
+                    [class]="'px-20 py-14 rounded-3xl border border-solid max-md:px-5 max-md:max-w-full border-' + tile.borderColor"
+                  >
+                    <div [routerLink]="tile.route" class="flex gap-5 max-md:flex-col">
+                      <div class="flex flex-col w-6/12 max-md:ml-0 max-md:w-full">
+                        <div class="self-stretch my-auto text-5xl font-semibold text-black max-md:mt-10 max-md:text-4xl">
+                          {{tile.title}}
+                        </div>
+                      </div>
+                      <div class="flex flex-col ml-5 w-6/12 max-md:ml-0 max-md:w-full">
+                        <img
+                          loading="lazy"
+                          [src]="tile.imageSrc"
+                          class="object-contain grow shrink-0 max-w-full aspect-[0.92] w-[136px] max-md:mt-10"
+                          [alt]="tile.title + ' icon'"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              }
+            </div>
+          </div>
