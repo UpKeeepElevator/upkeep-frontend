@@ -1,6 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { UserService } from 'src/app/core/services/user.service';
 
 @Component({
   selector: 'app-navbar',
@@ -10,6 +11,7 @@ import { CommonModule } from '@angular/common';
 })
 export class NavbarComponent implements OnInit {
   private routes = inject(Router);
+  private _userService = inject(UserService);
   public currentRoute = '';
 
   ngOnInit(): void {}
@@ -36,6 +38,6 @@ export class NavbarComponent implements OnInit {
   }
 
   logOut() {
-    console.log('Logged out');
+    this._userService.logout();
   }
 }

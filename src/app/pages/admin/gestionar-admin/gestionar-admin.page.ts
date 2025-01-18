@@ -36,10 +36,9 @@ export class AdminGestionarComponent {
       imageSrc: 'https://cdn.builder.io/api/v1/image/assets/TEMP/d2ededc3f5dc7a6d3400e373c608977cd6425a891075d2ac1d04e38d6f8492c4?placeholderIfAbsent=true&apiKey=4a5647cb5c024e33bcc119afd56c69f6',
       borderColor: 'mantis-400',
       route: '/administrator/gestionar/solicitud'
-    }
-  ];
+    },
 
-  bottomTiles: DashboardTile[] = [
+
     {
       title: 'Ruta',
       imageSrc: '/assets/icon/averia.svg',
