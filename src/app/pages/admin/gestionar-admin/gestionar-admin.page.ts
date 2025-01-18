@@ -3,7 +3,8 @@ import { CommonModule } from "@angular/common";
 import { NavbarComponent } from 'src/app/shared/components/sidebar/sidebar.component';
 import { GestionarAveriaComponent } from "./gestionar-averia/gestionar-averia.component";
 import { RouterLink } from "@angular/router";
-interface DashboardTile {
+import { CardAdminComponent } from "../../../shared/components/card-admin/card-admin.component";
+export interface DashboardTile {
   title: string;
   imageSrc: string;
   borderColor: string;
@@ -15,7 +16,7 @@ interface DashboardTile {
   templateUrl: './gestionar-admin.page.html',
   styleUrls: ['./gestionar-admin.page.scss'],
   standalone: true,
-  imports: [CommonModule, NavbarComponent, RouterLink], 
+  imports: [CommonModule, NavbarComponent, RouterLink, CardAdminComponent], 
 })
 export class AdminGestionarComponent {
   topTiles: DashboardTile[] = [
