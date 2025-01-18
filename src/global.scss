@@ -49,3 +49,10 @@ ion-modal.sidebar::part(content) {
     position: absolute;
     left: 0;
 }
+
+ion-modal.modal-report::part(content) {
+    --width: 100%;
+    --background: theme("colors.mercury.100");
+    border-top-left-radius: 2rem;
+    border-top-right-radius: 2rem;
+}

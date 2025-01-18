@@ -1,39 +1,38 @@
 import { Component, effect, forwardRef, input, OnInit } from '@angular/core';
 import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
-
-export type InputCss = 'login' | 'admin' | 'tech'
+import { InputCss } from '../form-input/form-input.component';
 
 @Component({
-  selector: 'app-form-input',
-  templateUrl: './form-input.component.html',
-  styleUrls: ['./form-input.component.scss'],
+  selector: 'app-form-textarea',
+  templateUrl: './form-textarea.component.html',
+  styleUrls: ['./form-textarea.component.scss'],
   imports: [ReactiveFormsModule],
   providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => FormInputComponent),
-      multi: true
-    }
-  ]
+      {
+        provide: NG_VALUE_ACCESSOR,
+        useExisting: forwardRef(() => FormTextareaComponent),
+        multi: true
+      }
+    ]
 })
-export class FormInputComponent  implements ControlValueAccessor, OnInit {
+export class FormTextareaComponent  implements ControlValueAccessor ,OnInit {
   control = input.required<FormControl<any>>();
   cssClass = input.required<InputCss>();
   type = input<string>('text')
   errorMessage = input<string>();
   placeholder = input<string>('');
+  
 
   protected style = ''
-
+  
   onTouched = () => {};
   onChange = (_value:any) => {};
 
-  constructor(){
+  constructor() {
     effect(() => {
       const currentSignalValue = this.control().value
       if(this.control().dirty || this.control().touched){
         const newValue = this.control().value
-
         if(newValue != currentSignalValue){
           this.onChange(newValue)
         }
