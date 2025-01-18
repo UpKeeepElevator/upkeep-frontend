@@ -1,0 +1,30 @@
+@let tileObj = tile();
+
+<div
+  class="flex flex-row w-[100%] max-md:ml-0 max-md:w-full"
+  role="button"
+  tabindex="0"
+  [attr.aria-label]="tileObj.title + ' section'"
+>
+  <div class="flex flex-col w-full max-md:mt-10 max-md:max-w-full">
+    <div [class]="GetClass()">
+      <div [routerLink]="tileObj.route" class="flex gap-5 max-md:flex-col">
+        <div class="flex flex-col w-[46%] max-md:ml-0 max-md:w-full">
+          <div
+            class="self-stretch my-auto text-4xl font-semibold text-black max-md:mt-10 max-md:text-4xl"
+          >
+            {{ tileObj.title }}
+          </div>
+        </div>
+        <div class="flex flex-col ml-5 w-[54%] max-md:ml-0 max-md:w-full">
+          <img
+            loading="lazy"
+            [src]="tileObj.imageSrc"
+            class="object-contain grow shrink-0 max-w-full aspect-[1.28] w-[160px] max-md:mt-10"
+            [alt]="tileObj.title + ' icon'"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

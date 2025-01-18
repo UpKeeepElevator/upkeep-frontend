@@ -16,6 +16,7 @@ export const routes: Routes = [
   {
     path: 'administrator',
     loadComponent: () => import('./pages/admin/home-admin/home-admin.page').then( m => m.HomeAdminPage),
+    loadChildren: () => import('./pages/admin/routes.admin').then(m => m.ADMIN_ROUTES),
     canActivate: [adminGuard],
     canActivateChild: [adminChildGuard]
   },
@@ -37,4 +38,10 @@ export const routes: Routes = [
     path: 'password-recovery',
     loadComponent: () => import('./pages/password-recovery/password-recovery.page').then( m => m.PasswordRecoveryPage)
   },
+  {
+    path: 'sidebar',
+    loadComponent: () => import('./shared/components/sidebar/sidebar.component').then( m => m.NavbarComponent)
+  },
+ 
+
 ];
