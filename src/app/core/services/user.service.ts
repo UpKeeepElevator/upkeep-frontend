@@ -83,3 +83,8 @@ export class UserService {
     this.router.navigate(['/login'])
   }
 }
+
+export interface ResponseAPI{
+    message: string;
+    statusCode: number;
+}

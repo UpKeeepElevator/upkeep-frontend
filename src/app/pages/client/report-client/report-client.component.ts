@@ -1,7 +1,7 @@
 import { Component, computed, inject, OnInit } from '@angular/core';
 import { FormTextareaComponent } from "../../../shared/components/form-textarea/form-textarea.component";
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { IonIcon } from '@ionic/angular/standalone'
+import { IonIcon, ModalController } from '@ionic/angular/standalone'
 import { addIcons } from 'ionicons';
 import { arrowForward } from 'ionicons/icons';
 import { FaultService } from 'src/app/core/services/fault.service';
@@ -11,6 +11,7 @@ import { ClientService } from 'src/app/core/services/client.service';
 import { user } from 'src/app/core/models/User';
 import { Building, Client } from 'src/app/core/models/Client.model';
 import { ElevatorService } from 'src/app/core/services/elevator.service';
+import { Elevator } from 'src/app/core/models/Elevator.model';
 
 @Component({
   selector: 'app-report-client',
@@ -24,32 +25,43 @@ export class ReportClientComponent  implements OnInit {
   private userService = inject(UserService)
   private clientService = inject(ClientService)
   private elevatorService = inject(ElevatorService)
+  private _modal = inject(ModalController)
   private selectedFault: FaultType | undefined;
   private user = computed(() => this.userService.user())
   private client: Client | undefined
   
   protected file: File | undefined
   protected reportForm = this.fb.group({
+    building: ['', Validators.required],
+    elevator: ['', Validators.required],
     fault: ['',Validators.required],
     description: ['', Validators.required],
     picture: ['', Validators.required]
   })
   protected faultTypes: FaultType[] = []
+  protected buildings: Building[] = []
+  protected elevators: Elevator[] = []
   
+  private get Building(){
+    const buildId = this.reportForm.get('building')?.value
+    return buildId ? Number(buildId) : 0
+  }
+
+  private get Elevator(){
+    const elevatorId = this.reportForm.get('elevator')?.value
+    return elevatorId ? Number(elevatorId) : 0
+  }
+
   private get Fautl(){
     const id = this.selectedFault ? this.selectedFault.id : 0
     return id
   }
 
   private get Desciption(){
-    const decription = this.reportForm.get('desciption')?.value
+    const decription = this.reportForm.get('description')?.value
     return decription ? decription: ''
   }
   
-  private get Picture(){
-    const id = this.selectedFault ? this.selectedFault.id : 0
-    return id
-  }
 
   constructor() {
     addIcons({
@@ -76,15 +88,16 @@ export class ReportClientComponent  implements OnInit {
       next: response => {
         this.client = response
         if(this.client && this.client.buildings.length)
-          this.getElevators(this.client.buildings[0])
+          this.buildings = this.client.buildings
       } 
     })
   }
 
-  getElevators(building: Building){
-    this.elevatorService.getBuildingElevator(building.id).subscribe({
+  getElevators(){
+    const id = this.Building
+    this.elevatorService.getBuildingElevator(id).subscribe({
       next: response => {
-        console.log(response)
+        this.elevators = response
       }
     })
   }
@@ -113,7 +126,26 @@ export class ReportClientComponent  implements OnInit {
 
    sendForm(){
     //todo call service and send the report 😊
-    console.log('Subiendo formulario')
+    if(this.file){
+      const date = new Date().toISOString()
+      let formData = new FormData()
+      console.log(this.Desciption)
+      formData.append('AscensorId', this.Elevator.toString())
+      formData.append('TipoAveriaId', this.Fautl.toString())
+      formData.append('FechaReporte', date)
+      formData.append('Evidencia', this.file)
+      formData.append('ComentarioAveria', this.Desciption)
+
+      this.faultService.postClientFault(formData).subscribe({
+        next: response => {
+          this.closeModal()
+        },
+        error: error => console.log(error)
+      })
+    }
    }
 
+   closeModal(){
+      this._modal.dismiss()
+   }
 }

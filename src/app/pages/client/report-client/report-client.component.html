@@ -1,14 +1,38 @@
 <form
   [formGroup]="reportForm"
   (ngSubmit)="sendForm()"
-  class="w-full h-full flex flex-col gap-8 px-8 py-10 font-urbanist"
+  class="w-full h-full flex flex-col gap-6 px-8 py-10 font-urbanist"
 >
   <h1 class="text-3xl font-bold">Reportar Aquí</h1>
 
   <div class="flex flex-col gap-2">
-    <div class="flex items-center gap-2">
-      <label for="fault">¿Qué está pasando?</label>
+    <div class="flex gap-4">
+      <label for="building">Edificio</label>
+      <select
+        name="building"
+        id=""
+        (change)="getElevators()"
+        formControlName="building"
+      >
+        <option value="" selected>Seleccione un Edificio</option>
+        @for (building of buildings; track building.id) {
+        <option [value]="building.id">{{ building.name }}</option>
+        }
+      </select>
     </div>
+    <div class="flex gap-4">
+      <label for="elevator">Ascensor</label>
+      <select name="elevator" id="" formControlName="elevator">
+        <option value="" selected>Seleccione un Ascensor</option>
+        @for (elevator of elevators; track elevator.id) {
+        <option [value]="elevator.id">{{ elevator.id }}</option>
+        }
+      </select>
+    </div>
+  </div>
+
+  <div class="flex flex-col gap-2">
+    <label for="fault">¿Qué está pasando?</label>
     <div class="flex flex-col gap-1">
       @for (type of faultTypes; track type.id) {
       <div (click)="selectFault(type)" class="flex gap-2 items-center">
