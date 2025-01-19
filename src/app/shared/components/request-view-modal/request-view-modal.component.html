@@ -1,3 +1,44 @@
-<p>
-  request-view-modal works!
-</p>
+<div
+  class="bg-mantis-700 text-white h-full py-10 px-5 flex flex-col justify-between"
+>
+  <!--header-->
+  <div class="flex items-start justify-between gap-2">
+    <div class="flex flex-col gap-2">
+      <h1 class="text-2xl font-bold">Revisa tu solicitud</h1>
+      <p class="text-sm">Confirma y verifica antes de enviar</p>
+    </div>
+    <ion-icon (click)="CloseModal()" class="text-3xl" name="close"></ion-icon>
+  </div>
+
+  <!--Body-->
+
+  <!--Tabla-->
+  <div class="border-2 rounded-lg h-full my-5 border-mantis-400">
+    <table class="text-xs w-full table">
+      <thead>
+        <tr class="border-b-2 border-white py-1">
+          <th>Categoría</th>
+          <th>Servicio</th>
+          <th>Comentario</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (job of requests; track $index) {
+        <tr class="text-xs">
+          <td>{{ job.prioridadId }}</td>
+          <td>{{ job.servicioId }}</td>
+          <td>{{ job.descripcionSolicitud }}</td>
+        </tr>
+
+        }
+      </tbody>
+    </table>
+  </div>
+
+  <button
+    (click)="SendRequest()"
+    class="bg-white text-mantis-700 w-full font-bold rounded-xl px-3 py-1 items-center flex justify-center relative"
+  >
+    Enviar
+  </button>
+</div>

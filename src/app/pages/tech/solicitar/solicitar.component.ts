@@ -6,6 +6,7 @@ import { SidebarButtonComponent } from '../../../shared/components/sidebar-butto
 import { ToggleElevatorSectionComponent } from '../../../shared/components/toggle-elevator-section/toggle-elevator-section.component';
 
 import { ModalController } from '@ionic/angular/standalone';
+import { RequestForm } from 'src/app/core/models/request';
 import { AddServiceRequestModalComponent } from 'src/app/shared/components/add-service-request-modal/add-service-request-modal.component';
 import { RequestViewModalComponent } from 'src/app/shared/components/request-view-modal/request-view-modal.component';
 @Component({
@@ -21,6 +22,8 @@ import { RequestViewModalComponent } from 'src/app/shared/components/request-vie
 })
 export class SolicitarComponent implements OnInit {
   private _modal = inject(ModalController);
+
+  requests: RequestForm[] = [];
 
   async AddService() {
     const requestView = await this._modal.create({
@@ -42,12 +45,11 @@ export class SolicitarComponent implements OnInit {
       component: RequestViewModalComponent,
       cssClass: 'modal-selection',
       componentProps: {
-        requests: this.solicitudes,
+        requests: this.requests,
       },
     });
     await requestView.present();
   }
-  solicitudes = [];
 
   constructor() {
     addIcons({
@@ -56,7 +58,13 @@ export class SolicitarComponent implements OnInit {
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.Debug();
+  }
+
+  Debug() {
+    this.AddService();
+  }
 
   ChangeSectionType($event: string) {
     console.log('Section type: ' + $event);

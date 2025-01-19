@@ -53,10 +53,10 @@
       </div>
 
       <div class="flex">
-        @if (solicitudes.length >0) {
+        @if (requests.length >0) {
 
         <p class="text-xs">Estas solicitando:</p>
-        @for (item of solicitudes; track $index) { @if(!$first){
+        @for (item of requests; track $index) { @if(!$first){
         <p class="text-xs">,</p>
         }
 
