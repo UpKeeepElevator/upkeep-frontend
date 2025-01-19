@@ -9,7 +9,8 @@ import { FaultType } from 'src/app/core/models/Fault';
 import { UserService } from 'src/app/core/services/user.service';
 import { ClientService } from 'src/app/core/services/client.service';
 import { user } from 'src/app/core/models/User';
-import { Client } from 'src/app/core/models/Client.model';
+import { Building, Client } from 'src/app/core/models/Client.model';
+import { ElevatorService } from 'src/app/core/services/elevator.service';
 
 @Component({
   selector: 'app-report-client',
@@ -22,6 +23,7 @@ export class ReportClientComponent  implements OnInit {
   private faultService = inject(FaultService)
   private userService = inject(UserService)
   private clientService = inject(ClientService)
+  private elevatorService = inject(ElevatorService)
   private selectedFault: FaultType | undefined;
   private user = computed(() => this.userService.user())
   private client: Client | undefined
@@ -73,6 +75,16 @@ export class ReportClientComponent  implements OnInit {
     this.clientService.getClientId(this.user().id_user).subscribe({
       next: response => {
         this.client = response
+        if(this.client && this.client.buildings.length)
+          this.getElevators(this.client.buildings[0])
+      } 
+    })
+  }
+
+  getElevators(building: Building){
+    this.elevatorService.getBuildingElevator(building.id).subscribe({
+      next: response => {
+        console.log(response)
       }
     })
   }
