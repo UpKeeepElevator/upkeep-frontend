@@ -22,8 +22,8 @@ export const userAuthTransform = (user: userAuth) => {
     return userAuth
 }
 
-const roleTransform = (roles: RoleApi[]) => {
-
+const roleTransform = (roles: RoleApi[] | undefined) => {
+    if(!roles) return []
     const roleApp : role[] = roles.map(role => {
         const roleTrans: role = {
             id_role: role.rolId,
