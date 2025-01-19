@@ -1,1 +1,21 @@
-<div></div>
+<div
+  class="flex flex-col p-3 gap-5 border-2 border-solid border-golden-bell-600 rounded-3xl"
+>
+  <div class="flex items-center justify-between">
+    <h1 class="text-xl font-bold text-golden-bell-600">
+      Necesitaste nuestra ayuda...
+    </h1>
+    <button class="bg-transparent" routerLink="/client/history">
+      <ion-icon name="action-client" class="text-3xl"></ion-icon>
+    </button>
+  </div>
+  <div class="flex flex-col gap-2">
+    @for (fault of faultList.slice(0,5); track fault.faultId) {
+    <p>
+      Reportaste el {{ fault.reporteDate | date : "dd/MM/yyyy" }} y
+      {{ responseDate(fault.responseDate) }}
+    </p>
+
+    }
+  </div>
+</div>
