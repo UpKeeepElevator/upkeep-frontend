@@ -1,3 +1,38 @@
-<p>
-  gestionar-averia works!
-</p>
+<!-- Main Content -->
+  <div class="flex-1 p-8 mt-10 ml-10">
+    <h1 class="text-4xl font-bold mb-6">Gestión de averías</h1>
+
+    <!-- Filter Section -->
+    <div class="flex items-center mb-6">
+      <button class="flex items-center bg-green-500 text-white px-4 py-2 rounded-md mr-4">
+        <span class="material-icons">filter_list</span>
+        <span class="ml-2">Filter</span>
+      </button>
+      <input
+        type="text"
+        placeholder="Buscar"
+        class="border border-gray-300 rounded-md px-4 py-2 w-1/3"
+      />
+    </div>
+
+    <!-- Cards Section -->
+    <div class="grid md:grid-cols-[50%_50%] gap-20 sm:grid-cols-1 overflow-auto">
+      @for (item of items; track $index) {
+      <div
+        class="bg-golden-bell-600 rounded-lg p-4 flex justify-between items-center "
+      > 
+        
+        <div class="text-white">
+          <p>{{ item.Cliente }} | {{ item.Edificio }} | {{ item.IDProducto }} |</p>
+          <p> {{ item.Fecha }}</p>
+          <p>{{ item.Motivo }}</p>
+          <img src="{{ item.imageSrc }}" alt="Product" class="w-16 h-16 mt-2" />
+        </div>
+        
+        <div class="text-white item">Estado</div>
+        
+      </div>
+    }
+    </div>
+    
+  </div>
