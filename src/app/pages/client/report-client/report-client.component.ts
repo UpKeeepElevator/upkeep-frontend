@@ -12,6 +12,7 @@ import { user } from 'src/app/core/models/User';
 import { Building, Client } from 'src/app/core/models/Client.model';
 import { ElevatorService } from 'src/app/core/services/elevator.service';
 import { Elevator } from 'src/app/core/models/Elevator.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-report-client',
@@ -26,6 +27,7 @@ export class ReportClientComponent  implements OnInit {
   private clientService = inject(ClientService)
   private elevatorService = inject(ElevatorService)
   private _modal = inject(ModalController)
+  private router = inject(Router)
   private selectedFault: FaultType | undefined;
   private user = computed(() => this.userService.user())
   private client: Client | undefined
@@ -139,6 +141,7 @@ export class ReportClientComponent  implements OnInit {
       this.faultService.postClientFault(formData).subscribe({
         next: response => {
           this.closeModal()
+          this.router.navigate(['/client/success'])
         },
         error: error => console.log(error)
       })
