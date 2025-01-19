@@ -9,6 +9,9 @@
     @for (item of items(); track $index) {
     <p class="text-sm">{{ item }}</p>
 
+    } @empty {
+    <p class="text-sm text-center">...</p>
+
     }
   </div>
 </div>

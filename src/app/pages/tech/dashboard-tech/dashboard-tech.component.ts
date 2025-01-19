@@ -31,9 +31,16 @@ export class DashboardTechComponent implements OnInit {
   ngOnInit() {}
 
   GetActivities(): string[] {
-    return ['activity 1', 'activity 2', 'Resolviste una avería el 02/02/25'];
+    return [];
   }
   GetLastclients(): string[] {
-    return ['activity 1', 'activity 2', 'Resolviste una avería el 02/02/25'];
+    return [];
+  }
+
+  GetPendingFaults(): any[] {
+    return [];
+  }
+  GetActiveFault(): string {
+    return 'Solucionando una avería en Agora Mall. ¿Lograste descifrar qué está pasando? ¡Completa el reporte y cierra la solicitud!';
   }
 }

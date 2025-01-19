@@ -6,7 +6,7 @@
 
   <section class="px-7 flex flex-col gap-10 pb-32 overflow-auto">
     <div class="">
-      <h1 class="text-2xl font-bold">Hola {{ activeUser().name_user }},</h1>
+      <h1 class="text-2xl font-bold">Hola, {{ activeUser().name_user }},</h1>
       <h2 class="text-xl">Sigamos elevando clientes</h2>
     </div>
 
@@ -19,11 +19,15 @@
         route="/technician/report"
       ></app-dashboard-item-tech>
 
+      @if(GetPendingFaults().length > 0){
+
       <div
         class="w-full p-2 flex flex-col gap-3 bg-mantis-700 border border-mantis-400 border-3 rounded-xl text-white"
       >
         <div class="flex items-center justify-between">
-          <h1 class="text-lg font-bold">Tienes pendientes</h1>
+          <h1 class="text-lg font-bold">
+            Tienes {{ GetPendingFaults().length }} pendientes
+          </h1>
         </div>
         <div class="flex justify-between items-center">
           <p class="text-xs">
@@ -34,14 +38,13 @@
           <ion-icon class="text-5xl" name="star"></ion-icon>
         </div>
       </div>
+      }
 
       <app-dashboard-item-tech
         type="tech"
         title="Ahora mismo estás..."
-        [items]="[
-          'Solucionando una avería en Agora Mall. ¿Lograste descifrar qué está pasando? ¡Completa el reporte y cierra la solicitud!'
-        ]"
-        route="/technician/history"
+        [items]="[GetActiveFault()]"
+        route="/technician/report"
       ></app-dashboard-item-tech>
       <app-dashboard-item-tech
         type="client"
