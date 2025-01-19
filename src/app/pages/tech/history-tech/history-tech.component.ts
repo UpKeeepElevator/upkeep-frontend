@@ -3,12 +3,12 @@ import { HomeButtonComponent } from '../../../shared/components/home-button/home
 import { SidebarButtonComponent } from '../../../shared/components/sidebar-button/sidebar-button.component';
 
 @Component({
-  selector: 'app-dashboard-tech',
-  templateUrl: './dashboard-tech.component.html',
-  styleUrls: ['./dashboard-tech.component.scss'],
+  selector: 'app-history-tech',
+  templateUrl: './history-tech.component.html',
+  styleUrls: ['./history-tech.component.scss'],
   imports: [SidebarButtonComponent, HomeButtonComponent],
 })
-export class DashboardTechComponent implements OnInit {
+export class HistoryTechComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {}

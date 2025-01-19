@@ -1,13 +1,30 @@
-import { Routes } from "@angular/router";
+import { Routes } from '@angular/router';
 
 export const TECH_ROUTES: Routes = [
-    {
-        path: '',
-        redirectTo: 'dashboard',
-        pathMatch: 'full'
-    },
-    {
-        path:'dashboard',
-        loadComponent: () => import('./dashboard-tech/dashboard-tech.component').then(m => m.DashboardTechComponent)
-    }
-]
+  {
+    path: '',
+    redirectTo: 'dashboard',
+    pathMatch: 'full',
+  },
+  {
+    path: 'dashboard',
+    loadComponent: () =>
+      import('./dashboard-tech/dashboard-tech.component').then(
+        (m) => m.DashboardTechComponent
+      ),
+  },
+  {
+    path: 'history',
+    loadComponent: () =>
+      import('./history-tech/history-tech.component').then(
+        (tech) => tech.HistoryTechComponent
+      ),
+  },
+  {
+    path: 'report',
+    loadComponent: () =>
+      import('./report-tech/report-tech.component').then(
+        (tech) => tech.ReportTechComponent
+      ),
+  },
+];
