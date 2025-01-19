@@ -16,7 +16,7 @@ export interface DashboardTile {
   templateUrl: './gestionar-admin.page.html',
   styleUrls: ['./gestionar-admin.page.scss'],
   standalone: true,
-  imports: [CommonModule, NavbarComponent, RouterLink, CardAdminComponent], 
+  imports: [CommonModule, CardAdminComponent], 
 })
 export class AdminGestionarComponent {
   topTiles: DashboardTile[] = [
