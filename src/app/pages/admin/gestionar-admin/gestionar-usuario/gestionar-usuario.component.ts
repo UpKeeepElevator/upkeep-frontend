@@ -10,7 +10,7 @@ interface User {
 }
 
 @Component({
-  selector: 'app-hu06-administrador-gestionar-usuario',
+  selector: 'app-gestionar-usuario',
   templateUrl: './gestionar-usuario.component.html',
   styleUrls: ['./gestionar-usuario.component.scss'],
   imports: [CommonModule]
