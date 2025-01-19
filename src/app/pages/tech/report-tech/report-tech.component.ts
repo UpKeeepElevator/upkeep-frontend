@@ -127,14 +127,17 @@ export class ReportTechComponent implements OnInit {
       formData.append('FechaRespuesta', date);
       formData.append('AveriaId', this.activeFault.faultId.toString());
       formData.append('TecnicoId', this.user().id_user.toString());
+      formData.append('Geolocalizacion', '0,0');
 
-      this.faultService.postClientFault(formData).subscribe({
-        next: (response) => {
-          this.closeModal();
-          this.router.navigate(['/client/success']);
-        },
-        error: (error) => console.log(error),
-      });
+      this.faultService
+        .postTechFault(formData, this.activeFault.faultId)
+        .subscribe({
+          next: (response) => {
+            this.closeModal();
+            this.router.navigate(['/client/success']);
+          },
+          error: (error) => console.log(error),
+        });
     }
   }
 

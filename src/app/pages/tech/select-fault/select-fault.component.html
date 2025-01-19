@@ -9,5 +9,27 @@
         <p>{{ faults.length }}</p>
       </div>
     </div>
+
+    <div class="flex gap-1 flex-col border-2 border-mantis-400 rounded-xl p-2">
+      <h1 class="text-md font-semibold">Averia actual</h1>
+
+      @if (currentFault().faultId != 0) {
+      <app-fault-small-card
+        [fault]="currentFault()"
+        [current]="true"
+      ></app-fault-small-card>
+
+      } @else {
+      <p class="text-md text-center">No hay averia activa</p>
+      }
+    </div>
+
+    @for (fault of faults; track $index) {
+    <app-fault-small-card
+      [fault]="fault"
+      [current]="false"
+      (faultSelected)="SetActiveFault($event)"
+    ></app-fault-small-card>
+    }
   </div>
 </section>

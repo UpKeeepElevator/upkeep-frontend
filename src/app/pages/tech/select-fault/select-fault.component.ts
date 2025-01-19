@@ -3,12 +3,13 @@ import { ModalController } from '@ionic/angular/standalone';
 import { Fault } from 'src/app/core/models/Fault';
 import { TechService } from 'src/app/core/services/tech.service';
 import { UserService } from 'src/app/core/services/user.service';
+import { FaultSmallCardComponent } from '../../../shared/components/fault-small-card/fault-small-card.component';
 
 @Component({
   selector: 'app-select-fault',
   templateUrl: './select-fault.component.html',
   styleUrls: ['./select-fault.component.scss'],
-  imports: [],
+  imports: [FaultSmallCardComponent],
 })
 export class SelectFaultComponent implements OnInit {
   protected activeUser = computed(() => this._userService.user());
