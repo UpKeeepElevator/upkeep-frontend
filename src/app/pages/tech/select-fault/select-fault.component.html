@@ -1,0 +1,35 @@
+<section class="p-5">
+  <div class="flex-col flex gap-5">
+    <div class="flex justify-between items-center">
+      <h1 class="text-xl font-bold">Averias pendientes</h1>
+
+      <div
+        class="rounded-full w-10 h-10 flex justify-center items-center bg-mantis-400 text-white text-xl"
+      >
+        <p>{{ faults.length }}</p>
+      </div>
+    </div>
+
+    <div class="flex gap-1 flex-col border-2 border-mantis-400 rounded-xl p-2">
+      <h1 class="text-md font-semibold">Averia actual</h1>
+
+      @if (currentFault().faultId != 0) {
+      <app-fault-small-card
+        [fault]="currentFault()"
+        [current]="true"
+      ></app-fault-small-card>
+
+      } @else {
+      <p class="text-md text-center">No hay averia activa</p>
+      }
+    </div>
+
+    @for (fault of faults; track $index) {
+    <app-fault-small-card
+      [fault]="fault"
+      [current]="false"
+      (faultSelected)="SetActiveFault($event)"
+    ></app-fault-small-card>
+    }
+  </div>
+</section>
