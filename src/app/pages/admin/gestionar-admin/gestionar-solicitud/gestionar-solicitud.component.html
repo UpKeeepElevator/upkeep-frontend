@@ -1,3 +1,74 @@
-<p>
-  gestionar-solicitud works!
-</p>
+<div class="flex">
+  <!-- Main Content -->
+  <div class="flex-1 p-8 bg-gray-100">
+    <h1 class="text-2xl font-bold mb-4">Gestión de solicitudes</h1>
+
+    <!-- Filter Section -->
+    <div class="flex items-center mb-4">
+      <button class="bg-green-500 text-white px-4 py-2 rounded mr-4">Filter</button>
+      <input
+        type="text"
+        placeholder="Buscar"
+        class="border border-gray-300 rounded px-4 py-2 flex-1"
+      />
+    </div>
+
+    <!-- Table -->
+    <table class="w-full border-collapse">
+      <thead>
+        <tr class="bg-orange-500 text-white">
+          <th class="px-4 py-2">Técnico</th>
+          <th class="px-4 py-2">Estado</th>
+          <th class="px-4 py-2">Pieza</th>
+          <th class="px-4 py-2">Equipo Relacionado</th>
+          <th class="px-4 py-2">Clave Solicitud</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (request of requests; track $index) {
+        <tr
+          
+          class="border-b border-gray-300"
+        >
+          <td class="px-4 py-2">
+            <div class="flex items-center">
+              <input type="checkbox" class="mr-2" />
+              <div>
+                <div>{{ request.name }}</div>
+                <div class="text-sm text-gray-500">{{ request.email }}</div>
+              </div>
+            </div>
+          </td>
+          <td class="px-4 py-2">
+            <span
+              class="px-2 py-1 rounded-full text-white"
+              [ngClass]="{
+                'bg-green-500': request.status === 'Entregado',
+                'bg-orange-500': request.status === 'Solicitado'
+              }"
+            >
+              {{ request.status }}
+            </span>
+          </td>
+          <td class="px-4 py-2">{{ request.role }}</td>
+          <td class="px-4 py-2 text-green-500">{{ request.relatedTeam }}</td>
+          <td class="px-4 py-2">...</td>
+        </tr>
+        }
+      </tbody>
+    </table>
+
+    <!-- Pagination -->
+    <div class="flex justify-between items-center mt-4">
+      <div></div>
+      <div class="flex space-x-2">
+        <button class="px-2 py-1 bg-orange-500 text-white rounded">
+          &lt;
+        </button>
+        <button class="px-2 py-1 bg-orange-500 text-white rounded">
+          &gt;
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
