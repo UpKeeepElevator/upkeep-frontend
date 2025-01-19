@@ -20,8 +20,9 @@
 
     <!-- Route Cards -->
     <div class="space-y-4">
+      @for (route of routes; track $index) {
       <div
-        *ngFor="let route of routes"
+      
         class="flex items-center border border-orange-300 rounded p-4"
       >
         <img class="w-16 h-16 bg-gray-300 rounded-full mr-4"
@@ -40,6 +41,8 @@
           Gestionar
         </button>
       </div>
+    }
     </div>
+    
   </div>
 </div>

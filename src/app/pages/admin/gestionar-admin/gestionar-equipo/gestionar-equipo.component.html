@@ -21,8 +21,8 @@
 
     <!-- Equipment Cards -->
     <div class="grid grid-cols-4 gap-4">
+      @for (equipo of equipos; track $index) {
       <div
-        *ngFor="let equipo of equipos"
         class="border border-orange-500 rounded p-4"
       >
         <img
@@ -40,6 +40,7 @@
         <img src="/assets/cabinaExample.png" alt="Detalles" class="w-6 h-6" />
         </button>
       </div>
+      }
     </div>
   </div>
 </div>
