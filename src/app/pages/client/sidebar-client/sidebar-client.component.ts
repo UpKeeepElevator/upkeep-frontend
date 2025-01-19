@@ -2,6 +2,7 @@ import { Component, inject, Input, OnInit } from '@angular/core';
 import { UserService } from 'src/app/core/services/user.service';
 import { SidebarNavButtonComponent } from "../../../shared/components/sidebar-nav-button/sidebar-nav-button.component";
 import { ModalController } from '@ionic/angular/standalone'
+import { ReportClientComponent } from '../report-client/report-client.component';
 @Component({
   selector: 'app-sidebar-client',
   templateUrl: './sidebar-client.component.html',
@@ -18,6 +19,19 @@ export class SidebarClientComponent  implements OnInit {
 
   ngOnInit() {
     console.log(this.currentRoute)
+  }
+
+  async openReport(){
+    this.closeModal()
+    const modalReport = await this._modal.create({
+      component: ReportClientComponent,
+      breakpoints: [0.5, 0.8],
+      initialBreakpoint: 0.8,
+      cssClass: 'modal-report',
+    });
+    
+    await modalReport.present();
+
   }
 
   closeModal(){
