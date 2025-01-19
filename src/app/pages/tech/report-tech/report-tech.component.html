@@ -27,7 +27,7 @@
             <option value="" selected>Seleccione una sección</option>
             <option value="something" selected>something</option>
             <!--//TODO: Utilizar secciones del ascensor-->
-            @for (elevator of elevators; track elevator.id) {
+            @for (elevator of elevator.sections; track elevator.id) {
             <option [value]="elevator.id">{{ elevator.id }}</option>
             }
           </select>

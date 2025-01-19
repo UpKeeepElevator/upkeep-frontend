@@ -4,13 +4,14 @@ import { Router } from '@angular/router';
 import { IonIcon, ModalController } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { arrowForward } from 'ionicons/icons';
-import { Client } from 'src/app/core/models/Client.model';
 import { Elevator } from 'src/app/core/models/Elevator.model';
-import { FaultType } from 'src/app/core/models/Fault';
-import { ClientService } from 'src/app/core/services/client.service';
+import { Fault } from 'src/app/core/models/Fault';
 import { ElevatorService } from 'src/app/core/services/elevator.service';
 import { FaultService } from 'src/app/core/services/fault.service';
+import { TechService } from 'src/app/core/services/tech.service';
 import { UserService } from 'src/app/core/services/user.service';
+import { fake_elevator } from 'src/app/core/utils/fake_elevator';
+import { fake_fault } from 'src/app/core/utils/fake_fault';
 import { FormTextareaComponent } from 'src/app/shared/components/form-textarea/form-textarea.component';
 import { HomeButtonComponent } from '../../../shared/components/home-button/home-button.component';
 import { SidebarButtonComponent } from '../../../shared/components/sidebar-button/sidebar-button.component';
@@ -31,13 +32,11 @@ export class ReportTechComponent implements OnInit {
   private fb = inject(FormBuilder);
   private faultService = inject(FaultService);
   private userService = inject(UserService);
-  private clientService = inject(ClientService);
   private elevatorService = inject(ElevatorService);
+  private techService = inject(TechService);
   private _modal = inject(ModalController);
   private router = inject(Router);
-  private selectedFault: FaultType | undefined;
   private user = computed(() => this.userService.user());
-  private client: Client | undefined;
 
   protected file: File[] | undefined;
   protected reportForm = this.fb.group({
@@ -47,8 +46,9 @@ export class ReportTechComponent implements OnInit {
     evidences: this.fb.array([], Validators.required),
   });
 
-  protected faultTypes: FaultType[] = [];
-  protected elevators: Elevator[] = [];
+  protected activeFault: Fault = fake_fault;
+
+  protected elevator: Elevator = fake_elevator;
 
   private get section() {
     const elevatorId = this.reportForm.get('section')?.value;
@@ -73,25 +73,24 @@ export class ReportTechComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getFaulTypes();
-    this.getClient();
+    this.getElevatorSections();
   }
 
-  getFaulTypes() {
-    this.faultService.getFaulTypes().subscribe({
+  getElevatorSections() {
+    //TODO: GetElevator
+
+    this.activeFault = this.techService.activeFault();
+
+    this.elevatorService.getElevator(this.activeFault.elevatorId).subscribe({
       next: (response) => {
-        this.faultTypes = response;
+        this.elevator = response;
+        //TODO: quitar log de ascensor
+        console.error(this.elevator);
       },
     });
-  }
 
-  getClient() {
-    this.clientService.getClientId(this.user().id_user).subscribe({
-      next: (response) => {
-        this.client = response;
-        // if (this.client && this.client.buildings.length)
-        //   this.buildings = this.client.buildings;
-      },
+    this.faultService.getFaulTypes().subscribe({
+      next: (response) => {},
     });
   }
 
@@ -112,16 +111,6 @@ export class ReportTechComponent implements OnInit {
     // if (this.file) this.reportForm.controls.picture.setValue(this.file.name);
   }
 
-  selectedStyle(fault: FaultType) {
-    let style = '';
-    if (fault.id === this.selectedFault?.id) {
-      style = 'size-4 bg-golden-bell-600 rounded';
-    } else {
-      style = 'size-4 border border-solid border-golden-bell-600 rounded';
-    }
-    return style;
-  }
-
   sendForm() {
     //todo call service and send the report 😊
     if (this.file) {
@@ -136,7 +125,7 @@ export class ReportTechComponent implements OnInit {
       });
       //Metdata
       formData.append('FechaRespuesta', date);
-      formData.append('AveriaId', '');
+      formData.append('AveriaId', this.activeFault.faultId.toString());
       formData.append('TecnicoId', this.user().id_user.toString());
 
       this.faultService.postClientFault(formData).subscribe({
