@@ -16,14 +16,16 @@ export class DashboardItemTechComponent implements OnInit {
   type = input.required<'client' | 'tech'>();
   route = input<string>('');
 
-  private GetColor = () =>
-    this.type() == 'client' ? 'golden-bell-600' : 'mantis-600';
+  private GetColorText = () =>
+    this.type() == 'client' ? 'text-golden-bell-600' : 'text-mantis-600';
+  private GetColorBorder = () =>
+    this.type() == 'client' ? 'border-golden-bell-600' : 'border-mantis-600';
+
   constructor() {}
 
-  titleStyle = () =>
-    `text-lg font-bold ${this.GetColor()} text-${this.GetColor()}`;
+  titleStyle = () => `text-lg font-bold  ${this.GetColorText()}`;
   cardStyle = () => {
-    return `w-full p-2 border border-${this.GetColor()}  border-3 rounded-xl`;
+    return `w-full p-2 border ${this.GetColorBorder()}  border-3 rounded-xl`;
   };
 
   ngOnInit() {}
