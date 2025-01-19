@@ -1,7 +1,9 @@
 <footer class="fixed bottom-0 w-dvw h-20 bg-mercury-100">
   <div class="relative flex items-center justify-between py-4 px-8">
     <div [class]="reportModalClass()"></div>
-    <h1 class="text-2xl font-bold">Reportar aqui</h1>
+    <h1 class="text-2xl font-bold">
+      {{ type() == "client" ? "Reportar aqui" : "Revisa tu ruta" }}
+    </h1>
     <button (click)="openReporter()">
       <img src="/assets/icon/expand.svg" width="20px" height="20px" alt="" />
     </button>

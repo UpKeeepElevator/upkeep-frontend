@@ -21,6 +21,13 @@ export const TECH_ROUTES: Routes = [
       ),
   },
   {
+    path: 'solicitar',
+    loadComponent: () =>
+      import('./solicitar/solicitar.component').then(
+        (tech) => tech.SolicitarComponent
+      ),
+  },
+  {
     path: 'report',
     loadComponent: () =>
       import('./report-tech/report-tech.component').then(
