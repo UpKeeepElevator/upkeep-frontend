@@ -32,12 +32,14 @@ export class RouteTechComponent implements OnInit, AfterViewInit {
   }
 
   markerOptions: google.maps.MarkerOptions = { draggable: false };
-  position: google.maps.LatLngLiteral = { lat: -31, lng: 147 };
-
+  position: google.maps.LatLngLiteral = {
+    lat: 18.448213931857616,
+    lng: -69.94583078047789,
+  };
   options: google.maps.MapOptions = {
     mapId: 'DEMO_MAP_ID',
-    center: { lat: -31, lng: 147 },
-    zoom: 4,
+    center: this.position,
+    zoom: 15,
     disableDefaultUI: true,
     cameraControl: false,
     gestureHandling: 'none',
