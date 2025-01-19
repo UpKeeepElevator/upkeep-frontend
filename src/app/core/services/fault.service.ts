@@ -22,6 +22,10 @@ export class FaultService {
     )
   }
 
+  getClienFaults(clientId: number){
+    const endpoint = ``
+  }
+
   postClientFault(form: FormData){
     const endpoint = `Averia`
     return this.http.post<ResponseAPI>(`${this.urlApi}/${endpoint}`, form)

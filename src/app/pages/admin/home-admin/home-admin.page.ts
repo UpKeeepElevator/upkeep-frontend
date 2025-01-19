@@ -10,7 +10,7 @@ import { NavbarComponent } from '../../../shared/components/sidebar/sidebar.comp
   templateUrl: './home-admin.page.html',
   styleUrls: ['./home-admin.page.scss'],
   standalone: true,
-  imports: [IonIcon, CommonModule, FormsModule, NavbarComponent, RouterOutlet],
+  imports: [CommonModule, FormsModule, NavbarComponent, RouterOutlet],
 })
 export class HomeAdminPage implements OnInit {
   constructor() {}
