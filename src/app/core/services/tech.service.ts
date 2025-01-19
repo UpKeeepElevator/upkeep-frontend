@@ -7,6 +7,8 @@ import { JobTransform } from '../adapters/job.adapter';
 import { Fault, FaultAPI } from '../models/Fault';
 import { JobApi } from '../models/job';
 import { fake_fault } from '../utils/fake_fault';
+import { UserApi } from '../models/User';
+import { UserListTransform } from '../adapters/user.adapter';
 
 @Injectable({
   providedIn: 'root',
@@ -44,6 +46,13 @@ export class TechService {
     return this.http
       .get<FaultAPI[]>(`${this.apiUrl}${endpoint}`)
       .pipe(map((response) => faultListTransform(response)));
+  }
+
+  getTechnicians(){
+    const endpoint = 'Usuario/tecnicos'
+    return this.http.get<UserApi[]>(`${this.apiUrl}/${endpoint}`).pipe(
+      map(users => UserListTransform(users))
+    )
   }
 }
 

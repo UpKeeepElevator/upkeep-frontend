@@ -29,6 +29,13 @@ export class FaultService {
     )
   }
 
+  getClientActiveFaults(clientId: number){
+    const endpoint = `Averia/cliente/${clientId}/activas`
+    return this.http.get<FaultAPI[]>(`${this.urlApi}/${endpoint}`).pipe(
+      map(faults => faultListTransform(faults))
+    ) 
+  }
+
   postClientFault(form: FormData) {
     const endpoint = `Averia`;
     return this.http.post<ResponseAPI>(`${this.urlApi}/${endpoint}`, form);

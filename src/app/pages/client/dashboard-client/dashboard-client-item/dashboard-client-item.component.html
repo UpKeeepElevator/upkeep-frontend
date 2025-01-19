@@ -1,3 +1,38 @@
+@let tech = help(); @let lastReport = report(); @if(tech){
+<div
+  class="flex flex-col p-3 gap-5 border-2 border-solid border-chateau-green-600 rounded-3xl"
+>
+  <h1 class="text-xl font-bold text-chateau-green-600">
+    Recibiste ayuda de...
+  </h1>
+  <div class="flex flex-col gap-2">
+    @for (tech of techFilter.slice(0,5); track tech.id_user) {
+    <p>{{ tech.name_user }}</p>
+    }
+  </div>
+</div>
+
+}@else if(lastReport){
+<div class="flex flex-col p-3 gap-5 bg-golden-bell-600 rounded-3xl text-white">
+  <h1 class="text-2xl font-bold">
+    {{ activeFaults.length ? "Tienes " + activeFaults.length : "No tienes" }}
+    {{ activeFaults.length > 1 ? "averías" : "avería" }}
+    en proceso
+  </h1>
+  <div class="flex items-center justify-between">
+    @if(activeFaults.length){
+    <p>Estamos al tanto y pronto enviaremos a nuestro equipo</p>
+    }@else {
+    <p>
+      Tus ascensores han alcanzado {{ daysLastReport }}
+      {{ daysLastReport === 1 ? "día" : "días" }} sin incidencias. Mantengamos
+      este historial impecable juntos.
+    </p>
+    }
+    <ion-icon name="star-green" class="text-3xl"></ion-icon>
+  </div>
+</div>
+} @else {
 <div
   class="flex flex-col p-3 gap-5 border-2 border-solid border-golden-bell-600 rounded-3xl"
 >
@@ -19,3 +54,4 @@
     }
   </div>
 </div>
+}
