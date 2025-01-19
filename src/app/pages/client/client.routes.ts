@@ -13,5 +13,9 @@ export const CLIENT_ROUTES: Routes = [
     {
         path: 'history',
         loadComponent: () => import('./history-client/history-client.component').then(client => client.HistoryClientComponent)
+    },
+    {
+        path: 'success',
+        loadComponent: () => import('./success-client/success-client.component').then(client => client.SuccessClientComponent)
     }
 ]

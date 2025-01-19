@@ -1,7 +1,7 @@
 import { Component, effect, forwardRef, input, OnInit } from '@angular/core';
 import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 
-export type InputCss = 'login' | 'admin' | 'tech'
+export type InputCss = 'login' | 'admin' | 'tech' | 'client'
 
 @Component({
   selector: 'app-form-input',
@@ -75,6 +75,9 @@ export class FormInputComponent  implements ControlValueAccessor, OnInit {
         break;
       case 'tech':
         this.style = 'w-full bg-transparent border border-solid border-sea-green-700 rounded-2xl  text-black p-2'
+        break;
+      case 'client':
+        this.style = 'w-full bg-transparent border border-solid border-golden-bell-600 rounded-2xl  text-black p-2'
         break;
       default:
         this.style = 'w-full bg-transparent border border-solid border-white rounded-2xl  text-white p-2'

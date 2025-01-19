@@ -18,7 +18,7 @@ import { InputCss } from '../form-input/form-input.component';
 export class FormTextareaComponent  implements ControlValueAccessor ,OnInit {
   control = input.required<FormControl<any>>();
   cssClass = input.required<InputCss>();
-  type = input<string>('text')
+  size = input<string>('')
   errorMessage = input<string>();
   placeholder = input<string>('');
   
@@ -64,19 +64,23 @@ export class FormTextareaComponent  implements ControlValueAccessor ,OnInit {
 
   private loadStyle(){
     const option = this.cssClass()
+    const size = this.size()
 
     switch(option){
       case 'login':
-        this.style = 'w-full bg-transparent border border-solid border-white rounded-2xl  text-white py-2 px-4'
+        this.style = `w-full h-20 bg-transparent border border-solid border-white rounded-2xl text-white py-2 px-4 ${size} resize-none`
         break;
       case 'admin':
-        this.style = 'w-full bg-transparent border border-solid border-grenadier-600 rounded-2xl  text-black p-2'
+        this.style = `w-full h-20 bg-transparent border border-solid border-grenadier-600 rounded-2xl  text-black p-2 ${size} resize-none`
         break;
       case 'tech':
-        this.style = 'w-full bg-transparent border border-solid border-sea-green-700 rounded-2xl  text-black p-2'
+        this.style = `w-full h-20 bg-transparent border border-solid border-sea-green-700 rounded-2xl  text-black p-2 ${size} resize-none` 
+        break;
+      case 'client':
+        this.style = `w-full bg-transparent border border-solid border-golden-bell-600 rounded-2xl  text-black p-2 ${size} resize-none`
         break;
       default:
-        this.style = 'w-full bg-transparent border border-solid border-white rounded-2xl  text-white p-2'
+        this.style = `w-full h-20 bg-transparent border border-solid border-white rounded-2xl  text-white p-2 ${size} resize-none`
         break;
     }
   }

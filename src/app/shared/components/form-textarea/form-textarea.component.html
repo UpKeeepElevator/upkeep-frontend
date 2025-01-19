@@ -1,3 +1,18 @@
-<p>
-  form-textarea works!
-</p>
+@let localControl = control();
+
+<textarea
+  [formControl]="localControl"
+  (blur)="onTouched()"
+  [placeholder]="placeholder()"
+  [className]="style"
+></textarea>
+
+@if(localControl.invalid && (localControl.dirty || localControl.touched)){
+<div class="text-golden-bell-600 h-5">
+  @if(localControl.errors?.['required']){
+  <span>{{ errorMessage() }}</span>
+  }
+</div>
+} @else {
+<div class="h-5"></div>
+}
