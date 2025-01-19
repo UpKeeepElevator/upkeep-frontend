@@ -2,8 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { map } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { faultTypeTransform } from '../adapters/fault.adapter';
-import { FaultTypeAPI } from '../models/Fault';
+import { faultListTransform, faultTypeTransform } from '../adapters/fault.adapter';
+import { FaultAPI, FaultTypeAPI } from '../models/Fault';
 import { ResponseAPI } from './user.service';
 
 @Injectable({
@@ -22,8 +22,18 @@ export class FaultService {
       .pipe(map((types_api) => faultTypeTransform(types_api)));
   }
 
-  getClienFaults(clientId: number){
-    const endpoint = ``
+  getClientFaults(clientId: number){
+    const endpoint = `Averia/cliente/${clientId}`
+    return this.http.get<FaultAPI[]>(`${this.urlApi}/${endpoint}`).pipe(
+      map(faults => faultListTransform(faults))
+    )
+  }
+
+  getClientActiveFaults(clientId: number){
+    const endpoint = `Averia/cliente/${clientId}/activas`
+    return this.http.get<FaultAPI[]>(`${this.urlApi}/${endpoint}`).pipe(
+      map(faults => faultListTransform(faults))
+    ) 
   }
 
   postClientFault(form: FormData) {

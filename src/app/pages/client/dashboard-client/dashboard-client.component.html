@@ -1,19 +1,21 @@
 @let _user = user();
 
-<main class="flex flex-col w-dvw h-dvh bg-mercury-200">
+<main class="flex flex-col w-dvw h-dvh bg-mercury-200 font-urbanist">
   <section class="flex items-center justify-between text-3xl px-8 py-4">
     <app-sidebar-button type="client"></app-sidebar-button>
     <app-home-button type="client-home"></app-home-button>
   </section>
 
-  <section>
-    <div>
-      <h1>Hola {{ _user.name_user }},</h1>
-      <h2>Subamos al siguiente nivel</h2>
+  <section class="flex flex-col gap-16 px-5">
+    <div class="flex flex-col gap-4">
+      <h1 class="font-bold text-3xl">Hola {{ _user.name_user }},</h1>
+      <h2 class="font-light text-2xl">Subamos al siguiente nivel</h2>
     </div>
 
-    <div>
+    <div class="flex flex-col gap-3">
       <app-dashboard-client-item />
+      <app-dashboard-client-item [report]="true" />
+      <app-dashboard-client-item [help]="true" />
     </div>
   </section>
 </main>

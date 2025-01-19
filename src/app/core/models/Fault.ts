@@ -14,10 +14,10 @@ export interface FaultAPI {
   averiaId: number;
   ascensorId: number;
   tipoAveriaId: number;
-  fechaReporte: Date;
+  fechaReporte: string;
   evidencia: string;
   comentarioAveria: string;
-  fechaRespuesta?: Date;
+  fechaRespuesta?: string;
   errorEncontrado?: string;
   reparacionRealizada?: string;
   seccionAveria?: number;
@@ -33,10 +33,10 @@ export interface Fault {
   faultId: number;
   elevatorId: number;
   faultTypeId: number;
-  reporteDate: Date;
+  reporteDate: string;
   evidence: string;
   faultComment: string;
-  responseDate?: Date;
+  responseDate?: string;
   failFound?: string;
   reparationDone?: string;
   faultSection?: number;

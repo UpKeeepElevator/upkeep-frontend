@@ -1,1 +1,60 @@
-<div></div>
+@let tech = help(); @let lastReport = report(); @if(tech){
+<div
+  class="flex flex-col p-3 gap-5 border-2 border-solid border-chateau-green-600 rounded-3xl"
+>
+  <h1 class="text-xl font-bold text-chateau-green-600">
+    Recibiste ayuda de...
+  </h1>
+  <div class="flex flex-col gap-2">
+    @for (tech of techFilter.slice(0,5); track tech.id_user) {
+    <p>{{ tech.name_user }}</p>
+    }@empty {
+    <p>Aún no has recivido ayuda de nuestro Técnicos</p>
+    }
+  </div>
+</div>
+
+}@else if(lastReport){
+<div class="flex flex-col p-3 gap-5 bg-golden-bell-600 rounded-3xl text-white">
+  <h1 class="text-2xl font-bold">
+    {{ activeFaults.length ? "Tienes " + activeFaults.length : "No tienes" }}
+    {{ activeFaults.length > 1 ? "averías" : "avería" }}
+    en proceso
+  </h1>
+  <div class="flex items-center justify-between">
+    @if(activeFaults.length){
+    <p>Estamos al tanto y pronto enviaremos a nuestro equipo</p>
+    }@else {
+    <p class="w-11/12">
+      Tus ascensores han alcanzado {{ daysLastReport }}
+      {{ daysLastReport === 1 ? "día" : "días" }} sin incidencias. Mantengamos
+      este historial impecable juntos.
+    </p>
+    }
+    <ion-icon name="star-green" class="text-3xl w-1/12"></ion-icon>
+  </div>
+</div>
+} @else {
+<div
+  class="flex flex-col p-3 gap-5 border-2 border-solid border-golden-bell-600 rounded-3xl"
+>
+  <div class="flex items-center justify-between">
+    <h1 class="text-xl font-bold text-golden-bell-600">
+      Necesitaste nuestra ayuda...
+    </h1>
+    <button class="bg-transparent" routerLink="/client/history">
+      <ion-icon name="action-client" class="text-3xl"></ion-icon>
+    </button>
+  </div>
+  <div class="flex flex-col gap-2">
+    @for (fault of faultList.slice(0,5); track fault.faultId) {
+    <p>
+      Reportaste el {{ fault.reporteDate | date : "dd/MM/yyyy" }} y
+      {{ responseDate(fault.responseDate) }}
+    </p>
+    }@empty {
+    <p>Aún no has reportado ninguna avería</p>
+    }
+  </div>
+</div>
+}
