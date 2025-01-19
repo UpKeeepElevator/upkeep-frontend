@@ -3,9 +3,23 @@
 >
   <h1 class="text-2xl font-bold">Revisa tu ruta</h1>
 
-  <!--Mapa-->
-
   <div class="flex flex-col gap-5">
+    <!--Mapa-->
+
+    <div class="map-container w-full relative">
+      <div class="map-frame">
+        <div id="map"></div>
+      </div>
+
+      <!-- <div class="rounded-lg absolute bottom-2 w-full">
+        <div class="flex bg-gray-300 mx-3 py-5 z-[100000]">
+          <p class="text-sm">Torre caney</p>
+        </div>
+      </div> -->
+    </div>
+
+    <!--END MAP-->
+
     <button
       class="bg-mantis-700 text-white font-bold rounded-xl px-3 py-1 items-center flex justify-center relative"
     >
@@ -33,21 +47,23 @@
         </h1>
       </div>
       <div class="flex flex-col gap-2 justify-between items-center">
-        @for (equipment of todayRoute; track $index) {}
+        @for (equipment of todayRoute; track $index) {
+
         <div class="flex justify-between w-full">
           <div class="flex gap-1 items-center">
             <ion-icon name="person"></ion-icon>
-            <p class="text-xs">Torre caney</p>
+            <p class="text-xs">{{ equipment.building }}</p>
           </div>
           <div class="flex gap-1 items-center">
             <ion-icon name="alert"></ion-icon>
-            <p class="text-xs">Averia</p>
+            <p class="text-xs">{{ equipment.job }}</p>
           </div>
           <div class="flex gap-1 items-center">
             <ion-icon name="location"></ion-icon>
-            <p class="text-xs">C. Gala de caney</p>
+            <p class="text-xs">{{ equipment.direction }}</p>
           </div>
         </div>
+        }
       </div>
     </div>
 
