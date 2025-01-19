@@ -43,16 +43,23 @@
 @tailwind utilities;
 
 ion-modal.sidebar::part(content) {
-    --width: 50%;
-    --height: 100%;
-    --background: theme("colors.mercury.200");
-    position: absolute;
-    left: 0;
+  --width: 50%;
+  --height: 100%;
+  --background: theme("colors.mercury.200");
+  position: absolute;
+  left: 0;
 }
 
 ion-modal.modal-report::part(content) {
-    --width: 100%;
-    --background: theme("colors.mercury.100");
-    border-top-left-radius: 2rem;
-    border-top-right-radius: 2rem;
+  --width: 100%;
+  --background: theme("colors.mercury.100");
+  border-top-left-radius: 2rem;
+  border-top-right-radius: 2rem;
+}
+
+ion-modal.modal-selection::part(content) {
+  --width: 90%;
+  --height: 70%;
+  --background: theme("colors.mercury.100");
+  border-radius: 2rem;
 }

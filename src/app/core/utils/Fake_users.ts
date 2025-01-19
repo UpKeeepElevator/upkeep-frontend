@@ -1,18 +1,18 @@
-import { role, user } from "../models/User";
+import { role, user } from '../models/User';
 
 export const fake_user: user = {
-    id_user: 0,
-    name_user: "",
-    role: [],
-    email: "",
-    phone: "",
-    id_route: null
-}
+  id_user: 0,
+  name_user: '',
+  role: [],
+  email: '',
+  phone: '',
+  id_route: null,
+};
 
-export const fake_role:role = {
-    id_role: 0,
-    name_role: ""
-}
+export const fake_role: role = {
+  id_role: 0,
+  name_role: '',
+};
 
 // export const USERS_LIST: user[] = [
 //     {
@@ -46,4 +46,4 @@ export const fake_role:role = {
 //         password: "4321"
 //     }
 
-// ] 
+// ]

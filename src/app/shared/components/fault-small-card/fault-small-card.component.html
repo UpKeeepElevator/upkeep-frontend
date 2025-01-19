@@ -1,0 +1,10 @@
+<div
+  (click)="SelectFault()"
+  class="flex px-3 py-5 rounded-2xl items-center"
+  [ngClass]="{ 'bg-slate-300': !current(), 'bg-mantis-400': current() }"
+>
+  <div class="flex flex-col gap-1">
+    <h1 class="text-xl font-bold">Elevador-{{ fault().elevatorId }}</h1>
+    <p class="text-sm">{{ fault().reporteDate | date }}</p>
+  </div>
+</div>
