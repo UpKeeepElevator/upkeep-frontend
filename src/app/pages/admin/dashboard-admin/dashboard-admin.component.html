@@ -1,3 +1,552 @@
-<p>
-  dashboard-admin works!
-</p>
+<div
+class="flex overflow-hidden flex-wrap gap-6 ml-20 items-start pr-20 pb-16 max-md:pr-5"
+role="main"
+aria-label="Dashboard Overview"
+>
+<div
+  class="flex flex-col grow shrink-0 self-end mt-24 basis-0 w-fit max-md:mt-10 max-md:max-w-full"
+>
+  <header
+    class="flex flex-wrap gap-5 justify-between max-md:mr-1.5 max-md:max-w-full"
+  >
+    <h1 class="my-auto text-5xl font-black text-black max-md:text-4xl">
+      Bienvenido, Odett
+    </h1>
+    <div class="flex flex-col text-2xl text-white max-md:max-w-full">
+      <div
+        class="flex flex-wrap gap-5 justify-between px-5 py-3 bg-green-600 rounded-xl border-2 border-green-600 border-solid max-md:max-w-full"
+        role="group"
+        aria-label="Time period selection"
+      >
+        <div class="self-start mt-3">
+          <span class="font-semibold">Periodo de tiempo:</span>
+          <span>Hoy</span>
+        </div>
+        <img
+          loading="lazy"
+          src="https://cdn.builder.io/api/v1/image/assets/TEMP/6cefcc5a8f284b3325cbf1d2797f1c2dbe1bce6ac75ed34ad0097d6951f2efee?placeholderIfAbsent=true&apiKey=7b575f624be74993a78e9128a6070d42"
+          class="object-contain shrink-0 aspect-[0.87] w-[34px]"
+          alt=""
+        />
+      </div>
+    </div>
+  </header>
+
+  <div class="mt-16 max-md:mt-10 max-md:mr-1.5 max-md:max-w-full">
+    <div class="flex gap-5 max-md:flex-col">
+      <section
+        class="flex flex-col w-[72%] max-md:ml-0 max-md:w-full"
+        aria-label="Maintenance Statistics"
+      >
+        <div class="flex flex-col w-full max-md:mt-10 max-md:max-w-full">
+          <div class="max-md:mr-1.5 max-md:max-w-full">
+            <div class="flex gap-5 max-md:flex-col">
+              <div class="flex flex-col w-6/12 max-md:ml-0 max-md:w-full">
+                <div
+                  class="flex flex-col grow text-black max-md:mt-10 max-md:max-w-full"
+                >
+                  <div
+                    class="flex flex-col pt-8 pr-8 pb-12 pl-20 w-full rounded-3xl border border-green-400 border-solid max-md:px-5 max-md:max-w-full"
+                    role="region"
+                    aria-label="Completed Maintenance"
+                  >
+                    <div
+                      class="flex gap-10 items-end self-start text-9xl font-semibold whitespace-nowrap max-md:text-4xl"
+                    >
+                      <div class="mt-9 basis-auto max-md:text-4xl">
+                        18
+                      </div>
+                      <img
+                        loading="lazy"
+                        src="https://cdn.builder.io/api/v1/image/assets/TEMP/99ef219697359bbb15c706cf04fbca794ee0e1da2f3020c73e48817fe49da53f?placeholderIfAbsent=true&apiKey=7b575f624be74993a78e9128a6070d42"
+                        class="object-contain shrink-0 mt-6 max-w-full aspect-[1.21] shadow-[0px_4px_4px_rgba(0,0,0,0.25)] w-[142px]"
+                        alt=""
+                      />
+                      <img
+                        loading="lazy"
+                        src="https://cdn.builder.io/api/v1/image/assets/TEMP/6f2aa9beab87f66e512ee53e9ce151645056f76857e341c10782034cf56baacc?placeholderIfAbsent=true&apiKey=7b575f624be74993a78e9128a6070d42"
+                        class="object-contain shrink-0 self-start aspect-[1.13] w-[35px]"
+                        alt=""
+                      />
+                    </div>
+                    <div class="self-center mt-6 text-2xl text-center">
+                      Mantenimientos realizados
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="flex flex-col ml-5 w-6/12 max-md:ml-0 max-md:w-full"
+              >
+                <div
+                  class="flex flex-col grow text-black max-md:mt-10 max-md:max-w-full"
+                >
+                  <div
+                    class="flex flex-col items-center py-9 pr-8 pl-20 w-full rounded-3xl border border-orange-600 border-solid max-md:px-5 max-md:max-w-full"
+                    role="region"
+                    aria-label="Reported Issues"
+                  >
+                    <img
+                      loading="lazy"
+                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/ba4e73d5a0db5b6b6876ab3d45cc8a049a33c1be6fc0856d643f2a4d5553c5f2?placeholderIfAbsent=true&apiKey=7b575f624be74993a78e9128a6070d42"
+                      class="object-contain self-end aspect-[1.1] w-[34px]"
+                      alt=""
+                    />
+                    <div
+                      class="flex gap-10 ml-3.5 max-w-full text-9xl font-semibold whitespace-nowrap w-[289px] max-md:text-4xl"
+                    >
+                      <div
+                        class="grow shrink my-auto w-24 max-md:text-4xl"
+                      >
+                        18
+                      </div>
+                      <img
+                        loading="lazy"
+                        src="https://cdn.builder.io/api/v1/image/assets/TEMP/d50d454c884bcb938d0ad7c056c39465db2a9cfa3e6f91c404fe6ceb3b65d78d?placeholderIfAbsent=true&apiKey=7b575f624be74993a78e9128a6070d42"
+                        class="object-contain shrink-0 max-w-full aspect-[1.23] w-[127px]"
+                        alt=""
+                      />
+                    </div>
+                    <div class="mt-7 text-2xl text-center">
+                      Averias reportadas
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="flex flex-col justify-center items-center px-16 py-14 mt-9 w-full rounded-3xl border border-orange-600 border-solid max-md:px-5 max-md:max-w-full"
+            role="region"
+            aria-label="Progress Statistics"
+          >
+            <div class="max-w-full w-[790px]">
+              <div class="flex gap-5 max-md:flex-col">
+                <div
+                  class="flex flex-col w-[33%] max-md:ml-0 max-md:w-full"
+                  role="region"
+                  aria-label="Tasks To Do"
+                >
+                  <div
+                    class="flex flex-col grow mt-1 text-center text-black max-md:mt-10"
+                  >
+                    <div
+                      class="flex relative flex-col w-44 text-xl font-semibold whitespace-nowrap aspect-[1.08]"
+                    >
+                      <img
+                        loading="lazy"
+                        src="https://cdn.builder.io/api/v1/image/assets/TEMP/be55f276eb6d7b22c50b6642f090529b43362293c52c3e5f82453b93bb7ffdc4?placeholderIfAbsent=true&apiKey=7b575f624be74993a78e9128a6070d42"
+                        class="object-cover absolute inset-0 size-full"
+                        alt=""
+                      />
+                      <div
+                        class="flex relative flex-col justify-center px-9 py-10 w-full aspect-[1.08] max-md:px-5"
+                      >
+                        <img
+                          loading="lazy"
+                          src="https://cdn.builder.io/api/v1/image/assets/TEMP/03e952f2ce2cb836da1c606a2b88bd04edfbdfdfe11fa712f02f7dc6878043be?placeholderIfAbsent=true&apiKey=7b575f624be74993a78e9128a6070d42"
+                          class="object-cover absolute inset-0 size-full"
+                          alt=""
+                        />
+                        <div
+                          class="relative px-8 py-9 rounded-full border border-amber-600 border-solid bg-neutral-200 shadow-[0px_17px_35px_rgba(0,0,0,0.12)] max-md:px-5"
+                          role="progressbar"
+                          aria-valuenow="81"
+                          aria-valuemin="0"
+                          aria-valuemax="100"
+                        >
+                          81%
+                        </div>
+                      </div>
+                    </div>
+                    <div class="self-center mt-7 text-2xl font-black">
+                      Por hacer
+                    </div>
+                  </div>
+                </div>
+
+                <div
+                  class="flex flex-col ml-5 w-[33%] max-md:ml-0 max-md:w-full"
+                  role="region"
+                  aria-label="Tasks In Progress"
+                >
+                  <div
+                    class="flex flex-col grow text-center text-black max-md:mt-10"
+                  >
+                    <div
+                      class="flex relative flex-col w-44 text-xl font-semibold whitespace-nowrap aspect-[1.08]"
+                    >
+                      <img
+                        loading="lazy"
+                        src="https://cdn.builder.io/api/v1/image/assets/TEMP/2ddf94b9c9a30c21b3d91b2b601ba8260e9e88c2d63e9141e6d813377076ade9?placeholderIfAbsent=true&apiKey=7b575f624be74993a78e9128a6070d42"
+                        class="object-cover absolute inset-0 size-full"
+                        alt=""
+                      />
+                      <div
+                        class="flex relative flex-col justify-center px-9 py-10 w-full aspect-[1.08] max-md:px-5"
+                      >
+                        <img
+                          loading="lazy"
+                          src="https://cdn.builder.io/api/v1/image/assets/TEMP/c69e24bb5d9c3f60fd7eab4f1b51a5e057a4034a6f5cfdd6f70774e718daf863?placeholderIfAbsent=true&apiKey=7b575f624be74993a78e9128a6070d42"
+                          class="object-cover absolute inset-0 size-full"
+                          alt=""
+                        />
+                        <div
+                          class="relative px-8 py-9 rounded-full border border-orange-600 border-solid bg-neutral-200 shadow-[0px_17px_35px_rgba(0,0,0,0.12)] max-md:px-5"
+                          role="progressbar"
+                          aria-valuenow="81"
+                          aria-valuemin="0"
+                          aria-valuemax="100"
+                        >
+                          81%
+                        </div>
+                      </div>
+                    </div>
+                    <div class="self-center mt-7 text-2xl font-black">
+                      En progreso
+                    </div>
+                  </div>
+                </div>
+
+                <div
+                  class="flex flex-col ml-5 w-[33%] max-md:ml-0 max-md:w-full"
+                  role="region"
+                  aria-label="Completed Tasks"
+                >
+                  <div
+                    class="flex flex-col text-center text-black whitespace-nowrap max-md:mt-10"
+                  >
+                    <div
+                      class="flex relative flex-col w-44 text-xl font-semibold aspect-[1.08]"
+                    >
+                      <img
+                        loading="lazy"
+                        src="https://cdn.builder.io/api/v1/image/assets/TEMP/6ad3ef9f2e95ab599dcc4d62d078800dc705e7d6252cf64edee912a694bd5855?placeholderIfAbsent=true&apiKey=7b575f624be74993a78e9128a6070d42"
+                        class="object-cover absolute inset-0 size-full"
+                        alt=""
+                      />
+                      <div
+                        class="flex relative flex-col justify-center px-9 py-10 w-full aspect-[1.08] max-md:px-5"
+                      >
+                        <img
+                          loading="lazy"
+                          src="https://cdn.builder.io/api/v1/image/assets/TEMP/543267b102a60f7ebdea57c111b02b5cba8155afa6f4aa14094f0c1214c8b9cc?placeholderIfAbsent=true&apiKey=7b575f624be74993a78e9128a6070d42"
+                          class="object-cover absolute inset-0 size-full"
+                          alt=""
+                        />
+                        <div
+                          class="relative px-9 py-9 rounded-full border border-green-700 border-solid bg-neutral-200 shadow-[0px_17px_35px_rgba(0,0,0,0.12)] max-md:px-5"
+                          role="progressbar"
+                          aria-valuenow="81"
+                          aria-valuemin="0"
+                          aria-valuemax="100"
+                        >
+                          81%
+                        </div>
+                      </div>
+                    </div>
+                    <div class="self-center mt-7 text-2xl font-black">
+                      Hecho
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <aside
+        class="flex flex-col ml-5 w-[28%] max-md:ml-0 max-md:w-full"
+        role="complementary"
+        aria-label="Client List"
+      >
+        <div class="flex flex-col grow max-md:mt-10 max-md:max-w-full">
+          <div
+            class="flex flex-col px-8 py-9 w-full border border-green-400 border-solid rounded-[35px] max-md:px-5 max-md:max-w-full"
+          >
+            <ul class="list-none p-0 m-0">
+              <li class="mb-7">
+                <div class="flex gap-7">
+                  <div
+                    class="flex relative flex-col items-start px-2.5 pt-4 w-20 rounded-xl aspect-[1.081]"
+                  >
+                    <img
+                      loading="lazy"
+                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/0a9c66dd748a5ea1ca9c664e582fa6f7cd8d26eaab40adbe8282a88facaaab64?placeholderIfAbsent=true&apiKey=7b575f624be74993a78e9128a6070d42"
+                      class="object-cover absolute inset-0 size-full"
+                      alt=""
+                    />
+                    <img
+                      loading="lazy"
+                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/b23753fa691ecf07c2cce8efff81f0cddd49b58ceea9ae61c51808e031f329ed?placeholderIfAbsent=true&apiKey=7b575f624be74993a78e9128a6070d42"
+                      class="object-contain z-10 w-full rounded-xl aspect-[1.08] max-md:-mr-2.5"
+                      alt="Client profile"
+                    />
+                  </div>
+                  <div class="flex flex-col my-auto text-black">
+                    <div class="self-start text-2xl font-medium">
+                      Cliente
+                    </div>
+                    <div class="mt-5 text-base">
+                      No. identificador equipo
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="flex gap-5 self-center max-w-full text-sm font-light text-black w-[140px]"
+                >
+                  <div class="grow shrink w-[111px]">
+                    Comentario lalala...
+                  </div>
+                  <button
+                    class="shrink-0 self-start w-[9px] aspect-square"
+                    aria-label="More details"
+                  >
+                    <img
+                      loading="lazy"
+                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/7084f3126bd4315809c3ea6bc5e38dd5d2e9c84ccbf0b6e386be2724c234e808?placeholderIfAbsent=true&apiKey=7b575f624be74993a78e9128a6070d42"
+                      class="object-contain w-full h-full"
+                      alt=""
+                    />
+                  </button>
+                </div>
+              </li>
+
+              <li class="border-t border-green-400 pt-7 mb-7">
+                <div class="flex gap-7">
+                  <div
+                    class="flex relative flex-col items-start px-2.5 pt-4 w-20 rounded-xl aspect-[1.081]"
+                  >
+                    <img
+                      loading="lazy"
+                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/1ba251bd5d0a7cec38472116928a65ec45f040db2292bd4a89018195347c96cc?placeholderIfAbsent=true&apiKey=7b575f624be74993a78e9128a6070d42"
+                      class="object-cover absolute inset-0 size-full"
+                      alt=""
+                    />
+                    <img
+                      loading="lazy"
+                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/070de05136379d8d6a6850d5cddff6815bf3ad55e68c3545fed76c9f909fee01?placeholderIfAbsent=true&apiKey=7b575f624be74993a78e9128a6070d42"
+                      class="object-contain z-10 w-full rounded-xl aspect-[1.1] max-md:-mr-2.5"
+                      alt="Client profile"
+                    />
+                  </div>
+                  <div class="flex flex-col my-auto text-black">
+                    <div class="self-start text-2xl font-medium">
+                      Cliente
+                    </div>
+                    <div class="mt-5 text-base">
+                      No. identificador equipo
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="flex gap-5 self-center max-w-full text-sm font-light text-black w-[140px]"
+                >
+                  <div class="grow shrink w-[111px]">
+                    Comentario lalala...
+                  </div>
+                  <button
+                    class="shrink-0 self-start w-[9px] aspect-square"
+                    aria-label="More details"
+                  >
+                    <img
+                      loading="lazy"
+                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/da60dbfeb0b4a6d42a26a4416fa30ad80dcc1f5c8a1644aee881981249a29571?placeholderIfAbsent=true&apiKey=7b575f624be74993a78e9128a6070d42"
+                      class="object-contain w-full h-full"
+                      alt=""
+                    />
+                  </button>
+                </div>
+              </li>
+
+              <li class="border-t border-green-400 pt-7 mb-7">
+                <div class="flex gap-7">
+                  <div
+                    class="flex relative flex-col items-start px-2.5 pt-3.5 w-20 rounded-xl aspect-[1.081]"
+                  >
+                    <img
+                      loading="lazy"
+                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/c0f773573158d3adfd03f810c8d2ced75dade70a470916f01d47e29fa7d47698?placeholderIfAbsent=true&apiKey=7b575f624be74993a78e9128a6070d42"
+                      class="object-cover absolute inset-0 size-full"
+                      alt=""
+                    />
+                    <img
+                      loading="lazy"
+                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/f3bfe5cb7982111f2d43bd6ff7239d058afbedace4692dd6f2c1f4b822b7bed9?placeholderIfAbsent=true&apiKey=7b575f624be74993a78e9128a6070d42"
+                      class="object-contain z-10 w-full rounded-xl aspect-[1.08] max-md:-mr-2.5"
+                      alt="Client profile"
+                    />
+                  </div>
+                  <div class="flex flex-col my-auto text-black">
+                    <div class="self-start text-2xl font-medium">
+                      Cliente
+                    </div>
+                    <div class="mt-5 text-base">
+                      No. identificador equipo
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="flex gap-5 self-center max-w-full text-sm font-light text-black w-[140px]"
+                >
+                  <div class="grow shrink w-[111px]">
+                    Comentario lalala...
+                  </div>
+                  <button
+                    class="shrink-0 self-start w-[9px] aspect-square"
+                    aria-label="More details"
+                  >
+                    <img
+                      loading="lazy"
+                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/22f72ce0f8fe00d4a03c359faae924b6cbd177ef4bf4017589913e3436f4b851?placeholderIfAbsent=true&apiKey=7b575f624be74993a78e9128a6070d42"
+                      class="object-contain w-full h-full"
+                      alt=""
+                    />
+                  </button>
+                </div>
+              </li>
+
+              <li class="border-t border-green-400 pt-7">
+                <div class="flex gap-7">
+                  <div
+                    class="flex relative flex-col items-start px-2.5 pt-4 w-20 rounded-xl aspect-[1.096]"
+                  >
+                    <img
+                      loading="lazy"
+                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/d3db8b76fc8e5f4c5ec37486d810f0103028689796cddafdfc34a9ff26abea24?placeholderIfAbsent=true&apiKey=7b575f624be74993a78e9128a6070d42"
+                      class="object-cover absolute inset-0 size-full"
+                      alt=""
+                    />
+                    <img
+                      loading="lazy"
+                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/f49fe3329a6dc0fcbcb8e2bbb955c9fd1e66f50fc854a15f90636423ea1ae068?placeholderIfAbsent=true&apiKey=7b575f624be74993a78e9128a6070d42"
+                      class="object-contain z-10 w-full rounded-xl aspect-[1.11] max-md:-mr-2.5"
+                      alt="Client profile"
+                    />
+                  </div>
+                  <div class="flex flex-col my-auto text-black">
+                    <div class="self-start text-2xl font-medium">
+                      Cliente
+                    </div>
+                    <div class="mt-5 text-base">
+                      No. identificador equipo
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="flex gap-5 self-center max-w-full text-sm font-light text-black w-[140px]"
+                >
+                  <div class="grow shrink w-[111px]">
+                    Comentario lalala...
+                  </div>
+                  <button
+                    class="shrink-0 self-start w-[9px] aspect-square"
+                    aria-label="More details"
+                  >
+                    <img
+                      loading="lazy"
+                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/65f5c6eed41e99129cf4f9880741b7e39194fb05abfe06e337cee9fe93c0f6d2?placeholderIfAbsent=true&apiKey=7b575f624be74993a78e9128a6070d42"
+                      class="object-contain w-full h-full"
+                      alt=""
+                    />
+                  </button>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <section
+    class="flex flex-col px-20 pt-11 pb-5 mt-10 w-full text-black rounded-3xl border border-orange-600 border-solid max-md:px-5 max-md:max-w-full"
+    aria-label="Active Technicians"
+  >
+    <div class="flex flex-wrap gap-5 justify-between max-md:max-w-full">
+      <div class="flex flex-col">
+        <h2 class="self-start text-2xl font-bold text-orange-600">
+          Tecnicos activos
+        </h2>
+        <ul class="list-none p-0">
+          <li class="flex flex-col px-0.5 mt-12 max-md:mt-10">
+            <div class="text-2xl font-medium">
+              Julio Iglesias de la Cruz
+            </div>
+            <div class="self-start mt-3 text-base">
+              Tiempo en la empresa
+            </div>
+          </li>
+          <li class="mt-10">
+            <div class="text-2xl font-medium max-md:mr-0.5">
+              Julio Iglesias de la Cruz
+            </div>
+            <div class="self-start mt-3 text-base">
+              Tiempo en la empresa
+            </div>
+          </li>
+          <li class="flex flex-col px-0.5 mt-10">
+            <div class="text-2xl font-medium">
+              Julio Iglesias de la Cruz
+            </div>
+            <div class="self-start mt-3 text-base">
+              Tiempo en la empresa
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div
+        class="flex flex-col my-auto text-2xl text-right whitespace-nowrap"
+      >
+        <div
+          class="flex gap-2.5"
+          role="status"
+          aria-label="Active jobs count"
+        >
+          <div class="my-auto">05</div>
+          <img
+            loading="lazy"
+            src="https://cdn.builder.io/api/v1/image/assets/TEMP/50ccbc3525be5c687623816da61d81c5cd8c92fce843371b51ea841ce2f87458?placeholderIfAbsent=true&apiKey=7b575f624be74993a78e9128a6070d42"
+            class="object-contain shrink-0 aspect-[1.1] w-[34px]"
+            alt=""
+          />
+        </div>
+        <div
+          class="flex gap-2.5 mt-14 max-md:mt-10 max-md:mr-1"
+          role="status"
+          aria-label="Active jobs count"
+        >
+          <div class="my-auto">05</div>
+          <img
+            loading="lazy"
+            src="https://cdn.builder.io/api/v1/image/assets/TEMP/5ab2c019fc3be68505d55f8b92f08a5ebda0780ed47b2d8ea64c48cbc280152e?placeholderIfAbsent=true&apiKey=7b575f624be74993a78e9128a6070d42"
+            class="object-contain shrink-0 aspect-[1.1] w-[34px]"
+            alt=""
+          />
+        </div>
+        <div
+          class="flex gap-2.5 mt-14 max-md:mt-10"
+          role="status"
+          aria-label="Active jobs count"
+        >
+          <div class="my-auto">05</div>
+          <img
+            loading="lazy"
+            src="https://cdn.builder.io/api/v1/image/assets/TEMP/8fa2a2d34ae1c3661f6e0c22a63d5b57d3d6a22d65a914efcc81978d71c1b043?placeholderIfAbsent=true&apiKey=7b575f624be74993a78e9128a6070d42"
+            class="object-contain shrink-0 aspect-[1.1] w-[34px]"
+            alt=""
+          />
+        </div>
+      </div>
+    </div>
+    <img
+      loading="lazy"
+      src="https://cdn.builder.io/api/v1/image/assets/TEMP/ea45b92ab4e2a9e3189788b4d8238a2de16d444cc37c6c2915828ec5f44259c9?placeholderIfAbsent=true&apiKey=7b575f624be74993a78e9128a6070d42"
+      class="object-contain self-end mt-6 aspect-[1.06] w-[34px] max-md:mr-2.5"
+      alt=""
+    />
+  </section>
+</div>
+</div>
