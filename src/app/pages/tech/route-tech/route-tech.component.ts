@@ -1,17 +1,17 @@
 import { AfterViewInit, Component, inject, OnInit } from '@angular/core';
+import { GoogleMapsModule } from '@angular/google-maps';
 import { Router } from '@angular/router';
 import { IonIcon, ModalController } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
-import * as L from 'leaflet';
 import { DashboardItemTechComponent } from '../../../shared/components/dashboard-item-tech/dashboard-item-tech.component';
 @Component({
   selector: 'app-route-tech',
   templateUrl: './route-tech.component.html',
   styleUrls: ['./route-tech.component.scss'],
-  imports: [IonIcon, DashboardItemTechComponent],
+  imports: [IonIcon, DashboardItemTechComponent, GoogleMapsModule],
 })
 export class RouteTechComponent implements OnInit, AfterViewInit {
-  private _route = inject(Router);
+  _route = inject(Router);
   private _modal = inject(ModalController);
   todayRoute: TechRoute[] = [];
 
@@ -21,38 +21,27 @@ export class RouteTechComponent implements OnInit, AfterViewInit {
       actionRight: '/assets/icon/action-right.svg',
       person: '/assets/icon/person.svg',
       location: '/assets/icon/location.svg',
+      transportation: '/assets/icon/transportation.svg',
 
       alert: '/assets/icon/alert.svg',
     });
   }
-  private map: any;
-
-  private initMap(): void {
-    this.map = L.map('map', {
-      center: [50.5, 30.5],
-      zoom: 0.5,
-    });
-    const tiles = L.tileLayer(
-      'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-      {
-        maxZoom: 18,
-        minZoom: 3,
-        attribution:
-          '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-      }
-    );
-    L.marker([50.5, 30.5], {
-      icon: L.icon({ iconUrl: '/assets/icon/location.svg' }),
-    }).addTo(this.map);
-
-    this.map.panTo([50.5, 30.5]);
-
-    tiles.addTo(this.map);
-  }
 
   ngAfterViewInit(): void {
-    this.initMap();
+    // this.initMap();
   }
+
+  markerOptions: google.maps.MarkerOptions = { draggable: false };
+  position: google.maps.LatLngLiteral = { lat: -31, lng: 147 };
+
+  options: google.maps.MapOptions = {
+    mapId: 'DEMO_MAP_ID',
+    center: { lat: -31, lng: 147 },
+    zoom: 4,
+    disableDefaultUI: true,
+    cameraControl: false,
+    gestureHandling: 'none',
+  };
 
   ngOnInit() {
     this.GetTodayRoute();
@@ -66,6 +55,16 @@ export class RouteTechComponent implements OnInit, AfterViewInit {
     this._modal.dismiss();
   }
 
+  NextLocation() {
+    return 'Torre caney';
+  }
+  ActualLocation() {
+    return 'Acropolis';
+  }
+  ContinueRoute() {
+    throw new Error('Method not implemented.');
+  }
+
   RequestService() {
     this.CloseModal();
     this._route.navigate(['/technician/solicitar']);
@@ -75,6 +74,7 @@ export class RouteTechComponent implements OnInit, AfterViewInit {
     this._route.navigate(['/technician/report']);
   }
 
+  //TODO: Utilizar ruta actual
   GetTodayRoute() {
     this.todayRoute = [
       {

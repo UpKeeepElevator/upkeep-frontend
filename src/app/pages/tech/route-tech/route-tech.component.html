@@ -8,19 +8,34 @@
 
     <div class="map-container w-full relative">
       <div class="map-frame">
-        <div id="map"></div>
-      </div>
+        <google-map height="100%" width="100%" [options]="options">
+          <map-marker
+            [position]="position"
+            [options]="markerOptions"
+          ></map-marker>
+        </google-map>
 
-      <!-- <div class="rounded-lg absolute bottom-2 w-full">
-        <div class="flex bg-gray-300 mx-3 py-5 z-[100000]">
-          <p class="text-sm">Torre caney</p>
+        <div class="absolute bottom-2 w-full">
+          <div
+            class="flex justify-between items-center px-3 rounded-lg bg-gray-300 mx-3 py-5 z-[100000]"
+          >
+            <p class="text-sm font-bold">{{ ActualLocation() }}</p>
+
+            <img
+              src="/assets/icon/transportation.svg"
+              class="w-[5rem]"
+              alt=""
+            />
+            <p class="text-sm font-bold">{{ NextLocation() }}</p>
+          </div>
         </div>
-      </div> -->
+      </div>
     </div>
 
     <!--END MAP-->
 
     <button
+      (click)="ContinueRoute()"
       class="bg-mantis-700 text-white font-bold rounded-xl px-3 py-1 items-center flex justify-center relative"
     >
       Continuar ruta

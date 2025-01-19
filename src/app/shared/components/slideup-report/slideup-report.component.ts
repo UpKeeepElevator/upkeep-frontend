@@ -15,9 +15,7 @@ export class SlideupReportComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit() {
-    this.Debug();
-  }
+  ngOnInit() {}
 
   reportModalClass = () =>
     `absolute left-1/2 translate-x-[-50%] top-2 w-1/6 h-1 rounded-full bg-${
