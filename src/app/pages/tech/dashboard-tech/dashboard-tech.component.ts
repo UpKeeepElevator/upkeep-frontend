@@ -1,4 +1,4 @@
-import { DatePipe } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { Component, computed, inject, OnInit } from '@angular/core';
 import { IonIcon, ModalController } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
@@ -20,6 +20,8 @@ import { SelectFaultComponent } from '../select-fault/select-fault.component';
     SidebarButtonComponent,
     HomeButtonComponent,
     IonIcon,
+    CommonModule,
+
     DashboardItemTechComponent,
   ],
 })
@@ -93,6 +95,7 @@ export class DashboardTechComponent implements OnInit {
       return 'No tienes averías activas';
     }
 
+    //TODO: Colocar nombre de edificio
     return 'Solucionando una avería en Agora Mall. ¿Lograste descifrar qué está pasando? ¡Completa el reporte y cierra la solicitud!';
   }
 }

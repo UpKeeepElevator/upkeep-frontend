@@ -39,7 +39,6 @@ export class SlideupReportComponent implements OnInit {
     } else {
       const modalReport = await this._modal.create({
         component: RouteTechComponent,
-        breakpoints: [1],
         initialBreakpoint: 1,
         cssClass: 'modal-report',
       });

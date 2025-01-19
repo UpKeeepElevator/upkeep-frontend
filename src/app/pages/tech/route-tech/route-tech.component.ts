@@ -22,7 +22,7 @@ export class RouteTechComponent implements OnInit, AfterViewInit {
       person: '/assets/icon/person.svg',
       location: '/assets/icon/location.svg',
       transportation: '/assets/icon/transportation.svg',
-
+      close: '/assets/icon/minimize-action.svg',
       alert: '/assets/icon/alert.svg',
     });
   }
