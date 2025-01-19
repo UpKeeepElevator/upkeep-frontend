@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, computed, inject, OnInit } from '@angular/core';
 import { FormTextareaComponent } from "../../../shared/components/form-textarea/form-textarea.component";
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IonIcon } from '@ionic/angular/standalone'
@@ -6,6 +6,10 @@ import { addIcons } from 'ionicons';
 import { arrowForward } from 'ionicons/icons';
 import { FaultService } from 'src/app/core/services/fault.service';
 import { FaultType } from 'src/app/core/models/Fault';
+import { UserService } from 'src/app/core/services/user.service';
+import { ClientService } from 'src/app/core/services/client.service';
+import { user } from 'src/app/core/models/User';
+import { Client } from 'src/app/core/models/Client.model';
 
 @Component({
   selector: 'app-report-client',
@@ -16,7 +20,11 @@ import { FaultType } from 'src/app/core/models/Fault';
 export class ReportClientComponent  implements OnInit {
   private fb = inject(FormBuilder)
   private faultService = inject(FaultService)
+  private userService = inject(UserService)
+  private clientService = inject(ClientService)
   private selectedFault: FaultType | undefined;
+  private user = computed(() => this.userService.user())
+  private client: Client | undefined
   
   protected file: File | undefined
   protected reportForm = this.fb.group({
@@ -50,12 +58,21 @@ export class ReportClientComponent  implements OnInit {
 
   ngOnInit() {
     this.getFaulTypes()
+    this.getClient()
   }
 
   getFaulTypes(){
     this.faultService.getFaulTypes().subscribe({
       next: (response) =>{
         this.faultTypes = response
+      }
+    })
+  }
+
+  getClient(){
+    this.clientService.getClientId(this.user().id_user).subscribe({
+      next: response => {
+        this.client = response
       }
     })
   }
