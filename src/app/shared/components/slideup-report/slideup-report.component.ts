@@ -15,12 +15,18 @@ export class SlideupReportComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.Debug();
+  }
 
   reportModalClass = () =>
     `absolute left-1/2 translate-x-[-50%] top-2 w-1/6 h-1 rounded-full bg-${
       this.type() == 'client' ? 'golden-bell-600' : 'mantis-400'
     }`;
+
+  private Debug() {
+    this.openReporter();
+  }
 
   async openReporter() {
     if (this.type() === 'client') {
