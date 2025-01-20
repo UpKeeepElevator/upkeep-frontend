@@ -30,4 +30,11 @@ export class ElevatorService {
       .get<ElevatorAPI>(`${this.urlApi}/${endpoint}`)
       .pipe(map((elevator) => ElevatorTransform(elevator)));
   }
+
+  getElevators() {
+    const endpoint = `Ascensor`;
+    return this.http
+      .get<ElevatorAPI[]>(`${this.urlApi}/${endpoint}`)
+      .pipe(map((elevators) => ElevatorListTransform(elevators)));
+  }
 }
