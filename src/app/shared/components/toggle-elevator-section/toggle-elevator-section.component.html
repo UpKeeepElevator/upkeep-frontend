@@ -1,0 +1,25 @@
+<div class="flex items-center">
+  <div
+    class="relative cursor-pointer rounded-full p-1 w-[12.5rem] h-12 bg-mantis-700"
+    (click)="toggleOption()"
+  >
+    <!-- Background slider -->
+    <div
+      class="absolute w-24 h-10 bg-mantis-400 rounded-full transition-all duration-300"
+      [ngStyle]="{
+        transform:
+          selectedOption === 'right' ? 'translateX(100%)' : 'translateX(0)'
+      }"
+    ></div>
+
+    <!-- Options -->
+    <div class="text-white relative flex justify-between items-center h-full">
+      <span class="flex-1 text-center z-10">
+        {{ leftOption }}
+      </span>
+      <span class="flex-1 text-center z-10">
+        {{ rightOption }}
+      </span>
+    </div>
+  </div>
+</div>
