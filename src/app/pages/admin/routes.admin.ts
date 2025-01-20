@@ -1,20 +1,25 @@
-import { Routes } from "@angular/router";
+import { Routes } from '@angular/router';
 
 export const ADMIN_ROUTES: Routes = [
   {
     path: '',
     redirectTo: 'dashboard',
-    pathMatch: 'full'
-},
-{
+    pathMatch: 'full',
+  },
+  {
     path: 'dashboard',
-    loadComponent: () => import('./dashboard-admin/dashboard-admin.component').then(client => client.DashboardAdminComponent)
-},
-    {
-        
-        path: 'gestionar',
-        loadComponent: () => import('./gestionar-admin/gestionar-admin.page').then( m => m.AdminGestionarComponent)
-      },
+    loadComponent: () =>
+      import('./dashboard-admin/dashboard-admin.component').then(
+        (client) => client.DashboardAdminComponent
+      ),
+  },
+  {
+    path: 'gestionar',
+    loadComponent: () =>
+      import('./gestionar-admin/gestionar-admin.page').then(
+        (m) => m.AdminGestionarComponent
+      ),
+  },
 
       {
         
@@ -66,3 +71,4 @@ export const ADMIN_ROUTES: Routes = [
       },
       
 ]
+

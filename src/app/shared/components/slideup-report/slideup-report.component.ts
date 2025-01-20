@@ -22,11 +22,15 @@ export class SlideupReportComponent implements OnInit {
       this.type() == 'client' ? 'golden-bell-600' : 'mantis-400'
     }`;
 
+  private Debug() {
+    this.openReporter();
+  }
+
   async openReporter() {
     if (this.type() === 'client') {
       const modalReport = await this._modal.create({
         component: ReportClientComponent,
-        breakpoints: [0.5, 0.8],
+        breakpoints: [0.5, 0.8, 1],
         initialBreakpoint: 0.8,
         cssClass: 'modal-report',
       });
@@ -35,8 +39,7 @@ export class SlideupReportComponent implements OnInit {
     } else {
       const modalReport = await this._modal.create({
         component: RouteTechComponent,
-        breakpoints: [0.5, 0.8],
-        initialBreakpoint: 0.8,
+        initialBreakpoint: 1,
         cssClass: 'modal-report',
       });
 

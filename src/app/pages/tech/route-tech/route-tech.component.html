@@ -1,3 +1,108 @@
-<p>
-  report-tech works!
-</p>
+<section
+  class="flex flex-col gap-10 py-10 px-5 w-dvw h-dvh bg-mercury-200 font-urbanist"
+>
+  <div class="flex justify-between items-center">
+    <h1 class="text-2xl font-bold">Revisa tu ruta</h1>
+    <ion-icon class="text-2xl" (click)="CloseModal()" name="close"></ion-icon>
+  </div>
+
+  <div class="flex flex-col gap-5">
+    <!--Mapa-->
+
+    <div class="map-container w-full relative">
+      <div class="map-frame">
+        @if (!noActiveJob) {
+        <google-map height="100%" width="100%" [options]="options">
+          <map-marker
+            [position]="position"
+            [options]="markerOptions"
+          ></map-marker>
+        </google-map>
+        } @else {
+        <div class="h-full w-full flex justify-center items-center">
+          <p class="text-lg text-center font-bold">
+            No hay un trabajo seleccionado
+          </p>
+        </div>
+        }
+
+        <div class="absolute bottom-2 w-full">
+          <div
+            class="flex justify-between items-center px-3 rounded-lg bg-gray-300 mx-3 py-5 z-[100000]"
+          >
+            <p class="text-sm font-bold">{{ ActualLocation() }}</p>
+
+            <img
+              src="/assets/icon/transportation.svg"
+              class="w-[5rem]"
+              alt=""
+            />
+            <p class="text-sm font-bold">{{ NextLocation() }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--END MAP-->
+
+    <button
+      (click)="ContinueRoute()"
+      class="bg-mantis-700 text-white font-bold rounded-xl px-3 py-1 items-center flex justify-center relative"
+    >
+      Continuar ruta
+      <ion-icon name="action" class="absolute right-0 text-3xl"></ion-icon>
+    </button>
+
+    <!--Reportar averia-->
+    <app-dashboard-item-tech
+      (click)="ReportFault()"
+      route="/technician/report"
+      type="tech"
+      title="En progreso:"
+      [items]="[GetCurrentFault()]"
+    ></app-dashboard-item-tech>
+
+    <!--Ruta-->
+
+    <div
+      class="w-full p-2 flex flex-col gap-3 border border-golden-bell-600 border-3 rounded-xl"
+    >
+      <div class="flex items-center justify-between">
+        <h1 class="text-lg font-bold text-golden-bell-600">
+          Clientes en ruta:
+        </h1>
+      </div>
+      <div class="flex flex-col gap-2 justify-between items-center">
+        @for (equipment of todayRoute; track $index) {
+
+        <div class="flex justify-between w-full">
+          <div class="flex gap-1 items-center">
+            <ion-icon name="person"></ion-icon>
+            <p class="text-xs">{{ equipment.building }}</p>
+          </div>
+          <div class="flex gap-1 items-center">
+            <ion-icon name="alert"></ion-icon>
+            <p class="text-xs">{{ equipment.job }}</p>
+          </div>
+          <div class="flex gap-1 items-center">
+            <ion-icon name="location"></ion-icon>
+            <p class="text-xs">{{ equipment.direction }}</p>
+          </div>
+        </div>
+        }
+      </div>
+    </div>
+
+    <!--Piezas-->
+    <button
+      (click)="RequestService()"
+      class="border-2 border-solid font-bold border-golden-bell-600 text-golden-bell-600 rounded-xl px-3 py-1 items-center flex justify-center relative"
+    >
+      ¿Necesitas un servicio?
+      <ion-icon
+        name="action-right"
+        class="absolute right-0 text-3xl"
+      ></ion-icon>
+    </button>
+  </div>
+</section>

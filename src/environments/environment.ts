@@ -9,7 +9,7 @@ export interface env {
 
 export const environment: env = {
   apiUrl: 'http://localhost:5286/api',
-  production: false
+  production: false,
 };
 
 /*

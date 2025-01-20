@@ -1,0 +1,78 @@
+<main class="flex flex-col w-dvw h-dvh bg-mercury-200 font-urbanist">
+  <section class="flex items-center justify-between text-3xl px-8 py-4">
+    <app-sidebar-button type="tech"></app-sidebar-button>
+    <app-home-button type="tech-home"></app-home-button>
+  </section>
+
+  <section class="px-7 flex flex-col gap-10 pb-32 overflow-auto">
+    <div class="flex flex-col gap-2">
+      <h1 class="text-2xl font-bold">Solicita partes,</h1>
+      <h3 class="text-md">Para completar tus pendientes</h3>
+    </div>
+
+    <!--Select-->
+    <div class="w-full flex justify-center">
+      <app-toggle-elevator-section
+        leftOption="Exterior"
+        rightOption="Interior"
+        (optionChange)="ChangeSectionType($event)"
+      ></app-toggle-elevator-section>
+    </div>
+
+    <!--Ascensor -->
+
+    <section class="w-full flex justify-center items-center relative">
+      <ion-icon
+        (click)="AddService()"
+        class="text-3xl absolute right-[5rem] bottom-[2rem]"
+        name="plus"
+      ></ion-icon>
+      <ion-icon
+        (click)="AddService()"
+        class="text-3xl absolute left-[5rem] bottom-[8rem]"
+        name="plus"
+      ></ion-icon>
+      <ion-icon
+        (click)="AddService()"
+        class="text-3xl absolute right-[5rem] top-[3rem]"
+        name="plus"
+      ></ion-icon>
+      <img class="w-[303px]" src="/assets/elevator-schema.png" alt="" />
+    </section>
+
+    <!--- Solicitud     -->
+
+    <div class="bg-mantis-700 rounded-2xl flex flex-col gap-3 p-3 text-white">
+      <div class="flex justify-between items-center">
+        <p class="text-md font-bold">Revisar solicitud</p>
+        <ion-icon
+          (click)="OpenRequest()"
+          class="text-2xl"
+          name="expand"
+        ></ion-icon>
+      </div>
+
+      <div class="flex flex-col gap-1">
+        @if (requests.length >0) {
+
+        <p class="text-xs">Estas solicitando:</p>
+        @for (item of requests; track $index) { @if(!$first){
+        <p class="text-xs">,</p>
+        }
+
+        <p class="text-xs">{{ getServiceName(item.servicioId) }}</p>
+        } } @else {
+        <p class="text-xs">No has solicitado nada</p>
+
+        }
+      </div>
+
+      <button
+        (click)="SendRequest()"
+        class="bg-white text-mantis-400 font-bold rounded-xl px-3 py-1 items-center flex justify-center relative"
+      >
+        Enviar solicitud
+      </button>
+    </div>
+  </section>
+</main>
