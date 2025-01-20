@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 interface User {
   name: string;
@@ -13,7 +14,7 @@ interface User {
   selector: 'app-gestionar-usuario',
   templateUrl: './gestionar-usuario.component.html',
   styleUrls: ['./gestionar-usuario.component.scss'],
-  imports: [CommonModule]
+  imports: [CommonModule, RouterLink]
 })
 export class GestionarUsuarioComponent {
   users: User[] = [

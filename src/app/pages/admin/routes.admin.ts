@@ -47,4 +47,22 @@ export const ADMIN_ROUTES: Routes = [
         path: 'gestionar/equipo',
         loadComponent: () => import('./gestionar-admin/gestionar-equipo/gestionar-equipo.component').then( m => m.GestionarEquipoComponent)
       },
+      {
+        
+        path: 'gestionar/usuario/gestionar-usuario',
+        loadComponent: () => import('./gestionar-admin/gestionar-usuario/form-gestionar-usuario/form-gestionar-usuario.component').then( m => m.FormGestionarUsuarioComponent)
+      },
+      {
+        path: 'gestionar/usuario/nuevo-usuario',
+        loadComponent: () => import('./gestionar-admin/gestionar-usuario/form-agregar-usuario/form-agregar-usuario.component').then( m => m.FormAgregarUsuarioComponent)
+      },
+      {
+        path: 'gestionar/usuario/gestionar-cliente',
+        loadComponent: () => import('./gestionar-admin/gestionar-usuario/form-gestionar-cliente/form-gestionar-cliente.component').then( m => m.FormGestionarClienteComponent)
+      },
+      {
+        path: 'gestionar/usuario/nuevo-cliente',
+        loadComponent: () => import('./gestionar-admin/gestionar-usuario/form-agregar-cliente/form-agregar-cliente.component').then( m => m.FormAgregarClienteComponent)
+      },
+      
 ]
