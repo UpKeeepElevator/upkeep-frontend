@@ -11,15 +11,16 @@
 
     <!-- Buttons -->
     <div class="flex mb-4">
-      <button (click)="onNuevoCliente()" class="bg-green-500 text-white px-4 py-2 rounded mr-2">Nuevo cliente</button>
-      <button (click)="onNuevoTecnico()" class="bg-green-500 text-white px-4 py-2 rounded">Nuevo tecnico</button>
+      <button routerLink= 'nuevo-cliente'
+      class="bg-green-500 text-white px-4 py-2 rounded mr-2">Nuevo cliente </button>
+      <button routerLink= 'nuevo-usuario'class="bg-green-500 text-white px-4 py-2 rounded">Nuevo tecnico</button>
     </div>
 
     <!-- User Table -->
-    <table class="w-full border-collapse">
+    <table class="w-full border-collapse border-gray-300">
       <thead>
         <tr class="bg-orange-500 text-white">
-          <th class="px-4 py-2"> </th>
+          <th class="px-4 py-2"></th>
           <th class="px-4 py-2">NOMBRE</th>
           <th class="px-4 py-2">ESTADO</th>
           <th class="px-4 py-2">ROL</th>
@@ -29,35 +30,51 @@
       </thead>
       <tbody>
         @for (user of users; track $index) {
-        <tr class="border-b border-gray-300">
-          <td class="px-4 py-2">
-            <input type="checkbox" />
-          </td>
-          <td class="px-4 py-2">
-            <div>{{ user.name }}</div>
-            <div class="text-sm text-gray-500">{{ user.email }}</div>
-          </td>
-          <td class="px-4 py-2">
-            <span
-              class="inline-block px-2 py-1 rounded-full text-white"
-              [ngClass]="{ 'bg-green-500': user.status === 'Active', 'bg-orange-500': user.status === 'Inactive' }"
-            >
-              {{ user.status }}
-            </span>
-          </td>
-          <td class="px-4 py-2">{{ user.role }}</td>
-          <td class="px-4 py-2">
-            <span
-              class="inline-block px-2 py-1 rounded-full text-white"
-              [ngClass]="{ 'bg-green-500': user.passwordAccess === 'Ver', 'bg-orange-500': user.passwordAccess === 'Sin acceso' }"
-            >
-              {{ user.passwordAccess }}
-            </span>
-          </td>
-          <td class="px-4 py-2">...</td>
-        </tr>
+          <tr [routerLink]="getRoleRoute(user.role)" class="cursor-pointer border-b border-gray-300">
+            <td class="px-4 py-2 text-center">
+              <input type="checkbox" />
+            </td>
+            <td class="text-center px-4 py-2">
+              <div>{{ user.name }}</div>
+              <div class="text-sm text-gray-500">{{ user.email }}</div>
+            </td>
+            <td class="px-4 py-2 text-center">
+              <span
+                class="inline-block px-2 py-1 rounded-full text-white"
+                [ngClass]="{
+                  'bg-green-500': user.status === 'Active',
+                  'bg-orange-500': user.status === 'Inactive'
+                }"
+              >
+                {{ user.status }}
+              </span>
+            </td>
+            <td class="px-4 py-2 text-center">
+              <a
+                
+                class=" cursor-pointer"
+              >
+                {{ user.role }}
+              </a>
+            </td>
+            <td class="px-4 py-2 text-center">
+              <span
+                class="inline-block px-2 py-1 rounded-full text-white"
+                [ngClass]="{
+                  'bg-green-500': user.passwordAccess === 'Ver',
+                  'bg-orange-500': user.passwordAccess === 'Sin acceso'
+                }"
+              >
+                {{ user.passwordAccess }}
+              </span>
+            </td>
+            <td class="px-4 py-2 text-center">...</td>
+          </tr>
         }
       </tbody>
     </table>
+    
+    
+    
   </div>
 </div>
