@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-form-gestionar-usuario',
@@ -14,8 +15,10 @@ export class FormGestionarUsuarioComponent  implements OnInit {
     phone: '809-xxx-xxxx',
     confirmPassword: 'XXXXXXXX',
   };     
-  constructor() { }
-
+  constructor(private location: Location) { }
+  goBack(): void {
+    this.location.back();
+  }
   ngOnInit() {}
 
 }

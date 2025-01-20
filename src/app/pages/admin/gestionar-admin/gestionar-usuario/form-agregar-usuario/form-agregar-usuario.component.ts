@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-form-agregar-usuario',
   templateUrl: './form-agregar-usuario.component.html',
@@ -15,8 +15,10 @@ export class FormAgregarUsuarioComponent  implements OnInit {
     phone: '',
     confirmPassword: '',
   };     
-  constructor() { }
-
+  constructor(private location: Location) { }
+  goBack(): void {
+    this.location.back();
+  }
   ngOnInit() {}
 
 }
