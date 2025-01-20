@@ -1,5 +1,8 @@
-import { Component, OnInit, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component, OnInit, inject } from '@angular/core';
+import { Fault } from 'src/app/core/models/Fault';
+import { FaultService } from 'src/app/core/services/fault.service';
+import { FaultCardComponent } from 'src/app/shared/components/fault-card/fault-card.component';
 export interface items {
   Cliente: string;
   Edificio: string;
@@ -12,98 +15,18 @@ export interface items {
   selector: 'app-gestionar-averia',
   templateUrl: './gestionar-averia.component.html',
   styleUrls: ['./gestionar-averia.component.scss'],
-  imports: [CommonModule]
+  imports: [CommonModule, FaultCardComponent],
 })
-export class GestionarAveriaComponent {
+export class GestionarAveriaComponent implements OnInit {
+  private _faultService = inject(FaultService);
 
-  items: items[] = [
-      {
-        Cliente: 'Radames',
-        Edificio: 'Agora Mall',
-        IDProducto: '16789', 
-        Fecha: new Date(),
-        Motivo: 'Abre y cierra la puerta',
-        imageSrc: 'assets/cabinaExample.png',
+  faults: Fault[] = [];
+
+  ngOnInit(): void {
+    this._faultService.getFaults().subscribe({
+      next: (data) => {
+        this.faults = data;
       },
-      {
-        Cliente: 'Radames',
-        Edificio: 'Agora Mall',
-        IDProducto: '16789', 
-        Fecha: new Date(),
-        Motivo: 'Abre y cierra la puerta',
-        imageSrc: 'assets/cabinaExample.png',
-      },
-      {
-        Cliente: 'Radames',
-        Edificio: 'Agora Mall',
-        IDProducto: '16789', 
-        Fecha: new Date(),
-        Motivo: 'Abre y cierra la puerta',
-        imageSrc: 'assets/cabinaExample.png',
-      },
-      {
-        Cliente: 'Radames',
-        Edificio: 'Agora Mall',
-        IDProducto: '16789', 
-        Fecha: new Date(),
-        Motivo: 'Abre y cierra la puerta',
-        imageSrc: 'assets/cabinaExample.png',
-      },
-      {
-        Cliente: 'Radames',
-        Edificio: 'Agora Mall',
-        IDProducto: '16789', 
-        Fecha: new Date(),
-        Motivo: 'Abre y cierra la puerta',
-        imageSrc: 'assets/cabinaExample.png',
-      },
-      {
-        Cliente: 'Radames',
-        Edificio: 'Agora Mall',
-        IDProducto: '16789', 
-        Fecha: new Date(),
-        Motivo: 'Abre y cierra la puerta',
-        imageSrc: 'assets/cabinaExample.png',
-      },
-      {
-        Cliente: 'Radames',
-        Edificio: 'Agora Mall',
-        IDProducto: '16789', 
-        Fecha: new Date(),
-        Motivo: 'Abre y cierra la puerta',
-        imageSrc: 'assets/cabinaExample.png',
-      },
-      {
-        Cliente: 'Radames',
-        Edificio: 'Agora Mall',
-        IDProducto: '16789', 
-        Fecha: new Date(),
-        Motivo: 'Abre y cierra la puerta',
-        imageSrc: 'assets/cabinaExample.png',
-      },
-      {
-        Cliente: 'Radames',
-        Edificio: 'Agora Mall',
-        IDProducto: '16789', 
-        Fecha: new Date(),
-        Motivo: 'Abre y cierra la puerta',
-        imageSrc: 'assets/cabinaExample.png',
-      },
-      {
-        Cliente: 'Radames',
-        Edificio: 'Agora Mall',
-        IDProducto: '16789', 
-        Fecha: new Date(),
-        Motivo: 'Abre y cierra la puerta',
-        imageSrc: 'assets/cabinaExample.png',
-      },
-      {
-        Cliente: 'Radames',
-        Edificio: 'Agora Mall',
-        IDProducto: '16789', 
-        Fecha: new Date(),
-        Motivo: 'Abre y cierra la puerta',
-        imageSrc: 'assets/cabinaExample.png',
-      },
-  ];
+    });
+  }
 }
