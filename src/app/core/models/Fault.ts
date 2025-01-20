@@ -1,3 +1,5 @@
+import { Building, BuildingAPI } from './Client.model';
+
 export interface FaultType {
   id: number;
   name: string;
@@ -27,6 +29,7 @@ export interface FaultAPI {
   firma?: string;
   geolocalizacion?: string;
   anexoAveria: FaultAttachmentAPI[];
+  edificio?: BuildingAPI;
 }
 
 export interface Fault {
@@ -46,6 +49,7 @@ export interface Fault {
   sign?: string;
   geolocation?: string;
   faultAttachment: FaultAttachment[];
+  building: Building;
 }
 
 export interface FaultAttachmentAPI {

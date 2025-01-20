@@ -30,7 +30,7 @@ export class SlideupReportComponent implements OnInit {
     if (this.type() === 'client') {
       const modalReport = await this._modal.create({
         component: ReportClientComponent,
-        breakpoints: [0.5, 0.8],
+        breakpoints: [0.5, 0.8, 1],
         initialBreakpoint: 0.8,
         cssClass: 'modal-report',
       });

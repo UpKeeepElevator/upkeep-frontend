@@ -11,12 +11,20 @@
 
     <div class="map-container w-full relative">
       <div class="map-frame">
+        @if (!noActiveJob) {
         <google-map height="100%" width="100%" [options]="options">
           <map-marker
             [position]="position"
             [options]="markerOptions"
           ></map-marker>
         </google-map>
+        } @else {
+        <div class="h-full w-full flex justify-center items-center">
+          <p class="text-lg text-center font-bold">
+            No hay un trabajo seleccionado
+          </p>
+        </div>
+        }
 
         <div class="absolute bottom-2 w-full">
           <div

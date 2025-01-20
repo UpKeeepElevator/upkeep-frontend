@@ -52,7 +52,7 @@
         ></ion-icon>
       </div>
 
-      <div class="flex">
+      <div class="flex flex-col gap-1">
         @if (requests.length >0) {
 
         <p class="text-xs">Estas solicitando:</p>
@@ -60,7 +60,7 @@
         <p class="text-xs">,</p>
         }
 
-        <p class="text-xs"></p>
+        <p class="text-xs">{{ getServiceName(item.servicioId) }}</p>
         } } @else {
         <p class="text-xs">No has solicitado nada</p>
 

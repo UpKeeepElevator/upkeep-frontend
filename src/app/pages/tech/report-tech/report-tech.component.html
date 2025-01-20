@@ -25,10 +25,11 @@
             formControlName="section"
           >
             <option value="" selected>Seleccione una sección</option>
-            <option value="something" selected>something</option>
             <!--//TODO: Utilizar secciones del ascensor-->
             @for (elevator of elevator.sections; track elevator.id) {
-            <option [value]="elevator.id">{{ elevator.id }}</option>
+            <option [value]="elevator.elevatorPartId">
+              {{ elevator.elevatorPartName }}
+            </option>
             }
           </select>
         </div>

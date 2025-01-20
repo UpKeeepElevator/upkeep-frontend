@@ -1,4 +1,5 @@
 import { Fault } from '../models/Fault';
+import { fake_building } from './fake_building';
 
 export const fake_fault: Fault = {
   faultId: 0,
@@ -8,4 +9,5 @@ export const fake_fault: Fault = {
   evidence: '',
   faultComment: '',
   faultAttachment: [],
+  building: fake_building,
 };

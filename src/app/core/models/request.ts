@@ -17,7 +17,7 @@ export interface PriorityAPI {
   nombrePrioridad: string;
 }
 
-export interface Request {
+export interface Requesst {
   requestId: number;
   technicianId: number;
   elevatorId: number;

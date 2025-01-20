@@ -6,6 +6,7 @@ import {
   FaultType,
   FaultTypeAPI,
 } from '../models/Fault';
+import { BuildingTransform } from './client.adapter';
 
 export const faultTypeTransform = (typesAPI: FaultTypeAPI[]) => {
   const types: FaultType[] = typesAPI.map((type_api) => {
@@ -37,6 +38,7 @@ export const faultListTransform = (faultsAPI: FaultAPI[]) => {
       sign: faultAPI.firma,
       geolocation: faultAPI.geolocalizacion,
       faultAttachment: attachmentListTransform(faultAPI.anexoAveria),
+      building: BuildingTransform(faultAPI.edificio),
     };
   });
   return types;
@@ -60,6 +62,7 @@ export const faultTransform = (faultAPI: FaultAPI) => {
     sign: faultAPI.firma,
     geolocation: faultAPI.geolocalizacion,
     faultAttachment: attachmentListTransform(faultAPI.anexoAveria),
+    building: BuildingTransform(faultAPI.edificio),
   };
 
   return fault;

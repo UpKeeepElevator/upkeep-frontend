@@ -12,18 +12,21 @@
   <div class="flex-col flex gap-5">
     <div class="flex flex-col gap-2">
       <div class="flex gap-2 flex-col">
-        <label for="section">Tipo de servicios</label>
+        <label for="type">Tipo de servicios</label>
         <select
+          (change)="ChangeServiceType($event)"
           class="rounded-lg border-[1px] p-1 border-mantis-600"
-          name="section"
+          name="type"
           id=""
-          formControlName="section"
+          formControlName="type"
         >
           <option value="" selected>Seleccione una sección</option>
-          <!--//TODO: Utilizar tipos de servicios-->
-          <!-- @for (elevator of elevator.sections; track elevator.id) {
-        <option [value]="elevator.id">{{ elevator.id }}</option>
-        } -->
+
+          @for (type of serviceTypes; track type.serviceTypeId) {
+          <option [value]="type.serviceTypeId">
+            {{ type.serviceTypeName }}
+          </option>
+          }
         </select>
       </div>
     </div>
@@ -38,21 +41,39 @@
           formControlName="service"
         >
           <option value="" selected>Seleccione una sección</option>
-          <!--//TODO: Utilizar tipos de servicios-->
-          <!-- @for (elevator of elevator.sections; track elevator.id) {
-        <option [value]="elevator.id">{{ elevator.id }}</option>
-        } -->
+          @for (service of services; track service.serviceId) {
+          <option [value]="service.serviceId">{{ service.serviceName }}</option>
+          }
         </select>
       </div>
     </div>
 
     <div class="flex flex-col gap-2">
-      <label for="solution">Comentario</label>
+      <div class="flex gap-2 flex-col">
+        <label for="priority">Prioridad</label>
+        <select
+          class="rounded-lg border-[1px] p-1 border-mantis-600"
+          name="priority"
+          id=""
+          formControlName="priority"
+        >
+          <option value="" selected>Seleccione una sección</option>
+          @for (priority of priorities; track priority.priorityId) {
+          <option [value]="priority.priorityId">
+            {{ priority.priorityName }}
+          </option>
+          }
+        </select>
+      </div>
+    </div>
+
+    <div class="flex flex-col gap-2">
+      <label for="description">Comentario</label>
       <app-form-input
-        [control]="reportForm.controls.solution"
+        [control]="reportForm.controls.description"
         cssClass="tech"
-        formControlName="solution"
-        errorMessage="Necesitamos una explicación de la reparación"
+        formControlName="description"
+        errorMessage="Necesitamos una explicación de la solicitud"
       ></app-form-input>
     </div>
   </div>

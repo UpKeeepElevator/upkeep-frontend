@@ -134,7 +134,8 @@ export class ReportTechComponent implements OnInit {
         .subscribe({
           next: (response) => {
             this.closeModal();
-            this.router.navigate(['/client/success']);
+            this.router.navigate(['/technician/success']);
+            this.techService.SetActiveFault(fake_fault);
           },
           error: (error) => console.log(error),
         });

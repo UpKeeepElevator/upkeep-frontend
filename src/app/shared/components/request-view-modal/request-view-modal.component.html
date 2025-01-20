@@ -17,17 +17,17 @@
     <table class="text-xs w-full table">
       <thead>
         <tr class="border-b-2 border-white py-1">
-          <th>Categoría</th>
+          <th>Prioridad</th>
           <th>Servicio</th>
-          <th>Comentario</th>
+          <th>Descripcion</th>
         </tr>
       </thead>
       <tbody>
         @for (job of requests; track $index) {
         <tr class="text-xs">
-          <td>{{ job.prioridadId }}</td>
+          <td>{{ getPriority(job.prioridadId) }}</td>
           <td>{{ job.servicioId }}</td>
-          <td>{{ job.descripcionSolicitud }}</td>
+          <td>{{ getServiceName(job.servicioId) }}</td>
         </tr>
 
         }

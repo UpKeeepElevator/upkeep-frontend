@@ -1,4 +1,4 @@
-import { Priority, PriorityAPI, Request, RequestAPI } from '../models/request';
+import { Priority, PriorityAPI, Requesst, RequestAPI } from '../models/request';
 
 export const PriorityListTransform = (prioritiesAPI: PriorityAPI[]) => {
   const types: Priority[] = prioritiesAPI.map((priority_api) => {
@@ -22,7 +22,7 @@ export const PriorityTransform = (priority_api: PriorityAPI) => {
 };
 
 export const RequestListTransform = (requestsAPI: RequestAPI[]) => {
-  const types: Request[] = requestsAPI.map((request_api) => {
+  const types: Requesst[] = requestsAPI.map((request_api) => {
     return {
       elevatorId: request_api.ascensorId,
       priority: PriorityTransform(request_api.prioridad),
@@ -40,7 +40,7 @@ export const RequestListTransform = (requestsAPI: RequestAPI[]) => {
 };
 
 export const RequestTransform = (request_api: RequestAPI) => {
-  const attachment: Request = {
+  const attachment: Requesst = {
     elevatorId: request_api.ascensorId,
     priority: PriorityTransform(request_api.prioridad),
     priorityId: request_api.prioridadId,

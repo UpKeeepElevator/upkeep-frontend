@@ -1,8 +1,16 @@
-import { AfterViewInit, Component, inject, OnInit } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  computed,
+  inject,
+  OnInit,
+} from '@angular/core';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { Router } from '@angular/router';
 import { IonIcon, ModalController } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
+import { TechService } from 'src/app/core/services/tech.service';
+import { fake_fault } from 'src/app/core/utils/fake_fault';
 import { DashboardItemTechComponent } from '../../../shared/components/dashboard-item-tech/dashboard-item-tech.component';
 @Component({
   selector: 'app-route-tech',
@@ -14,6 +22,9 @@ export class RouteTechComponent implements OnInit, AfterViewInit {
   _route = inject(Router);
   private _modal = inject(ModalController);
   todayRoute: TechRoute[] = [];
+
+  private _techService = inject(TechService);
+  currentFault = computed(() => this._techService.activeFault());
 
   constructor() {
     addIcons({
@@ -27,13 +38,11 @@ export class RouteTechComponent implements OnInit, AfterViewInit {
     });
   }
 
-  ngAfterViewInit(): void {
-    // this.initMap();
-  }
+  ngAfterViewInit(): void {}
 
   markerOptions: google.maps.MarkerOptions = { draggable: false };
   position: google.maps.LatLngLiteral = {
-    lat: 18.448213931857616,
+    lat: 20.448213931857616,
     lng: -69.94583078047789,
   };
   options: google.maps.MapOptions = {
@@ -45,12 +54,31 @@ export class RouteTechComponent implements OnInit, AfterViewInit {
     gestureHandling: 'none',
   };
 
+  noActiveJob: boolean = false;
+
   ngOnInit() {
     this.GetTodayRoute();
+
+    if (this.currentFault().faultId == fake_fault.faultId) {
+      this.noActiveJob = true;
+    } else {
+      const location = this.currentFault().building.location?.split(',');
+
+      if (location && location.length == 2) {
+        this.position.lat = parseFloat(location[0].trim());
+        this.position.lng = parseFloat(location[1].trim());
+      }
+    }
   }
 
   GetCurrentFault(): string {
-    return 'Estás trabajando con una avería en Agora Mall. ¿O ya terminaste?';
+    if (this.currentFault().faultId == fake_fault.faultId) {
+      return 'No tienes averías activas';
+    }
+
+    return `Estás trabajando con una avería en ${
+      this.currentFault().building.name
+    }. ¿O ya terminaste?`;
   }
 
   CloseModal() {
@@ -58,10 +86,12 @@ export class RouteTechComponent implements OnInit, AfterViewInit {
   }
 
   NextLocation() {
-    return 'Torre caney';
+    let nextLocation = this.todayRoute[1];
+    if (nextLocation) return nextLocation.building;
+    return 'Ruta completa';
   }
   ActualLocation() {
-    return 'Acropolis';
+    return this.currentFault().building.name;
   }
   ContinueRoute() {
     throw new Error('Method not implemented.');
@@ -76,15 +106,9 @@ export class RouteTechComponent implements OnInit, AfterViewInit {
     this._route.navigate(['/technician/report']);
   }
 
-  //TODO: Utilizar ruta actual
   GetTodayRoute() {
-    this.todayRoute = [
-      {
-        building: 'Agora Mall',
-        direction: 'Calle 1ra, Santo Domingo',
-        job: 'Averia',
-      },
-    ];
+    //TODO: Utilizar ruta actual
+    this.todayRoute = [];
   }
 }
 

@@ -91,11 +91,13 @@ export class DashboardTechComponent implements OnInit {
   }
 
   GetActiveFault(): string {
-    if (this.currentFault() == fake_fault) {
+    if (this.currentFault().faultId == fake_fault.faultId) {
       return 'No tienes averías activas';
     }
 
     //TODO: Colocar nombre de edificio
-    return 'Solucionando una avería en Agora Mall. ¿Lograste descifrar qué está pasando? ¡Completa el reporte y cierra la solicitud!';
+    return `Solucionando una avería en ${
+      this.currentFault().building.name
+    }. ¿Lograste descifrar qué está pasando? ¡Completa el reporte y cierra la solicitud!`;
   }
 }

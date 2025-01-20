@@ -34,4 +34,11 @@ export const TECH_ROUTES: Routes = [
         (tech) => tech.ReportTechComponent
       ),
   },
+  {
+    path: 'success',
+    loadComponent: () =>
+      import('./success-tech/success-tech.component').then(
+        (client) => client.SuccessTechComponent
+      ),
+  },
 ];
