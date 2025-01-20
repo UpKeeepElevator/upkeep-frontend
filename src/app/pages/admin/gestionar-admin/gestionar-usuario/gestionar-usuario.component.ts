@@ -41,7 +41,7 @@ export class GestionarUsuarioComponent implements OnInit {
     } else if (role === 'Cliente') {
       return 'gestionar-cliente';
     }
-    return '/'; // Ruta por defecto o error
+    return '/';
   }
 
 }
