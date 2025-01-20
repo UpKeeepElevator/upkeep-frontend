@@ -6,10 +6,7 @@
     <!-- Filters -->
     <div class="flex space-x-4 mb-6">
       <select class="px-4 py-2 bg-green-500 text-white rounded">
-        <option>Marca: lalal</option>
-      </select>
-      <select class="px-4 py-2 bg-green-500 text-white rounded">
-        <option>Edificio: lalal</option>
+        <option>Edificio: Todos</option>
       </select>
       <button
         class="px-4 py-2 bg-green-500 text-white rounded"
@@ -22,22 +19,18 @@
     <!-- Equipment Cards -->
     <div class="grid grid-cols-4 gap-4">
       @for (equipo of equipos; track $index) {
-      <div
-        class="border border-orange-500 rounded p-4"
-      >
+      <div class="border border-orange-500 rounded p-4">
         <img
-          [src]="equipo.imagen"
+          [src]="'/assets/cabinaExample.png'"
           alt="Elevator"
           class="w-full h-40 object-cover mb-2"
         />
         <p class="text-orange-500 font-bold">{{ equipo.id }}</p>
-        <p>Marca: {{ equipo.marca }}</p>
-        <p>Cliente: {{ equipo.cliente }}</p>
-        <p>Último mant.: {{ equipo.ultimoMantenimiento }}</p>
-        <button
-        class="mt-2 text-orange-500"
-        (click)="onVerDetalles(equipo)">
-        <img src="/assets/cabinaExample.png" alt="Detalles" class="w-6 h-6" />
+        <p>Marca: {{ equipo.branch }}</p>
+        <p>Cliente: {{ equipo.building.name }}</p>
+        <p>Num. pisos: {{ equipo.floorNumber }}</p>
+        <button class="mt-2 text-orange-500" (click)="onVerDetalles(equipo)">
+          <img src="/assets/cabinaExample.png" alt="Detalles" class="w-6 h-6" />
         </button>
       </div>
       }

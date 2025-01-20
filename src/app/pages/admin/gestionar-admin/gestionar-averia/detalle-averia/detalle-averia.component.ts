@@ -43,9 +43,12 @@ export class DetalleAveriaComponent implements OnInit {
       alert: '/assets/icon/alert.svg',
     });
 
-    this._faultService
-      .getFault(this.fault.faultId)
-      .subscribe({ next: (data) => (this.fault = data) });
+    this._faultService.getFault(this.fault.faultId).subscribe({
+      next: (data) => {
+        console.log(data);
+        this.fault = data;
+      },
+    });
     this._techService.getTechnicians().subscribe({
       next: (data) => (this.technicians = data),
     });
@@ -67,6 +70,7 @@ export class DetalleAveriaComponent implements OnInit {
       .subscribe({
         next: (data) => {
           console.log('Assign fault to technician', data);
+          this.closeModal();
         },
       });
   }

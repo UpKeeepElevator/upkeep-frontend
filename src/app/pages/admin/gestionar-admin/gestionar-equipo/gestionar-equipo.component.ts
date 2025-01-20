@@ -1,5 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
+import { Elevator } from 'src/app/core/models/Elevator.model';
+import { ElevatorService } from 'src/app/core/services/elevator.service';
 
 @Component({
   selector: 'app-gestionar-equipo',
@@ -7,14 +9,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./gestionar-equipo.component.scss'],
   imports: [CommonModule],
 })
-export class GestionarEquipoComponent {
-  equipos = Array.from({ length: 20 }, (_, index) => ({
-    id: `009384-${index}`,
-    marca: 'MarcaX',
-    cliente: `Cliente${index}`,
-    ultimoMantenimiento: `2025-01-${10 + index}`,
-    imagen: '/assets/cabinaExample.png',
-  }));
+export class GestionarEquipoComponent implements OnInit {
+  private _elevatorService = inject(ElevatorService);
+
+  equipos: Elevator[] = [];
+
+  ngOnInit(): void {
+    this._elevatorService
+      .getElevators()
+      .subscribe({ next: (data) => (this.equipos = data) });
+  }
 
   onNuevoEquipo(): void {
     console.log('Crear nuevo equipo');
