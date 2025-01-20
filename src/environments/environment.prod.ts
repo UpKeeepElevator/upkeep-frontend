@@ -5,5 +5,5 @@ export interface env {
 
 export const environment: env = {
   production: true,
-  apiUrl: 'http://localhost:5286/api',
+  apiUrl: 'https://upkeep-api.duckdns.org/api',
 };
