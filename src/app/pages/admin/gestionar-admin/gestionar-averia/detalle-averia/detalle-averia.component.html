@@ -1,3 +1,59 @@
-<p>
-  detalle-averia works!
-</p>
+<section class="p-5">
+  <div class="flex justify-between items-center">
+    <h1 class="text-3xl font-bold">Gestionar averia</h1>
+    <ion-icon (click)="closeModal()" class="text-4xl" name="close"></ion-icon>
+  </div>
+
+  <div class="flex justify-between items-center">
+    <div class="flex flex-col gap-2">
+      <div class="flex items-center gap-2">
+        <p class="text-md font-bold">Equipo:</p>
+        <p class="text-md">{{ fault.elevatorId }}</p>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <p class="text-md font-bold">Fecha:</p>
+        <p class="text-md">
+          {{ fault.reporteDate | date : "EEEE dd/MM/yyyy" }}
+        </p>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <p class="text-md font-bold">Motivo:</p>
+        <p class="text-md">{{ getFaultType(fault.faultTypeId) }}</p>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <p class="text-md font-bold">Comentario reporte:</p>
+        <p class="text-md">{{ fault.faultComment }}</p>
+      </div>
+    </div>
+
+    <form [formGroup]="reportForm" (ngSubmit)="sendForm()">
+      <div class="flex flex-col gap-2">
+        <div class="flex gap-4">
+          <label for="technician">Asignar a: </label>
+          <select name="technician" id="" formControlName="technician">
+            <option value="" selected>Seleccione un Ascensor</option>
+            @for (elevator of technicians; track elevator.id_user) {
+            <option [value]="elevator.id_user">{{ elevator.name_user }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <button
+        type="submit"
+        [disabled]="reportForm.invalid"
+        class="self-center flex items-center gap-2 bg-golden-bell-600 text-white font-semibold w-fit rounded-full pl-2 disabled:opacity-50"
+      >
+        <p>Guardar</p>
+        <div
+          class="size-8 flex items-center justify-center p-2 bg-grenadier-600 rounded-[50%] text-lg"
+        >
+          <ion-icon name="arrow-forward"></ion-icon>
+        </div>
+      </button>
+    </form>
+  </div>
+</section>

@@ -4,6 +4,7 @@ import { map } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import {
   faultListTransform,
+  faultTransform,
   faultTypeTransform,
 } from '../adapters/fault.adapter';
 import { FaultAPI, FaultTypeAPI } from '../models/Fault';
@@ -18,6 +19,18 @@ export class FaultService {
 
   constructor() {}
 
+  assignTechnicianToFault(technicianId: number, faultId: number) {
+    const form = {
+      averiaId: faultId,
+      tecnicoId: technicianId,
+    };
+
+    const endpoint = `Averia/asignar`;
+    return this.http
+      .post<FaultAPI>(`${this.urlApi}/${endpoint}`, form)
+      .pipe(map(faultTransform));
+  }
+
   getFaulTypes() {
     const endpoint = `Averia/tipo-averias`;
     return this.http
@@ -25,6 +38,12 @@ export class FaultService {
       .pipe(map((types_api) => faultTypeTransform(types_api)));
   }
 
+  getFault(faultId: number) {
+    const endpoint = `Averia/${faultId}`;
+    return this.http
+      .get<FaultAPI>(`${this.urlApi}/${endpoint}`)
+      .pipe(map((faults) => faultTransform(faults)));
+  }
   getFaults() {
     const endpoint = `Averia`;
     return this.http

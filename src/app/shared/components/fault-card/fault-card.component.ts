@@ -43,7 +43,8 @@ export class FaultCardComponent implements OnInit {
       component: DetalleAveriaComponent,
       cssClass: 'modal-selection',
       componentProps: {
-        fault: this.fault,
+        fault: this.fault(),
+        faultsTypes: this.faultsTypes,
       },
     });
     await modal.present();
