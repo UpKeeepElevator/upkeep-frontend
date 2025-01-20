@@ -1,27 +1,20 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
-
-interface User {
-  name: string;
-  email: string;
-  status: 'Active' | 'Inactive';
-  role: string;
-  passwordAccess: 'Ver' | 'Sin acceso';
-}
+import { user } from 'src/app/core/models/User';
+import { UserService } from 'src/app/core/services/user.service';
 
 @Component({
   selector: 'app-gestionar-usuario',
   templateUrl: './gestionar-usuario.component.html',
   styleUrls: ['./gestionar-usuario.component.scss'],
-  imports: [CommonModule, RouterLink]
+  imports: [CommonModule, RouterLink],
 })
 export class GestionarUsuarioComponent implements OnInit {
-  users: User[] = [
-    { name: 'Justin Septimus', email: 'example@email.com', status: 'Active', role: 'Tecnico', passwordAccess: 'Ver' },
-    { name: 'Anika Rhel Madsen', email: 'example@email.com', status: 'Active', role: 'Cliente', passwordAccess: 'Ver' },
-    // Añade más usuarios si es necesario
-  ];
+  users: user[] = [];
+
+  private _userService = inject(UserService);
+
   constructor(private router: Router) {}
   onFilter(): void {
     console.log('Filter clicked');
@@ -32,7 +25,11 @@ export class GestionarUsuarioComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    this._userService.getUsers().subscribe({
+      next: (data) => {
+        this.users = data;
+      },
+    });
   }
 
   getRoleRoute(role: string): string {
@@ -43,6 +40,4 @@ export class GestionarUsuarioComponent implements OnInit {
     }
     return '/';
   }
-
 }
-
