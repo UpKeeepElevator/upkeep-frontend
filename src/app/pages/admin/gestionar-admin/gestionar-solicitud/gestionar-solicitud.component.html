@@ -5,7 +5,9 @@
 
     <!-- Filter Section -->
     <div class="flex items-center mb-4">
-      <button class="bg-green-500 text-white px-4 py-2 rounded mr-4">Filter</button>
+      <button class="bg-green-500 text-white px-4 py-2 rounded mr-4">
+        Filter
+      </button>
       <input
         type="text"
         placeholder="Buscar"
@@ -26,16 +28,15 @@
       </thead>
       <tbody>
         @for (request of requests; track $index) {
-        <tr
-          
-          class="border-b border-gray-300"
-        >
+        <tr class="border-b border-gray-300">
           <td class="px-4 py-2">
             <div class="flex items-center">
               <input type="checkbox" class="mr-2" />
               <div>
-                <div>{{ request.name }}</div>
-                <div class="text-sm text-gray-500">{{ request.email }}</div>
+                <div>{{ getTechnicianName(request.technicianId) }}</div>
+                <div class="text-sm text-gray-500">
+                  {{ getTechnicianMail(request.technicianId) }}
+                </div>
               </div>
             </div>
           </td>
@@ -43,16 +44,15 @@
             <span
               class="px-2 py-1 rounded-full text-white"
               [ngClass]="{
-                'bg-green-500': request.status === 'Entregado',
-                'bg-orange-500': request.status === 'Solicitado'
+                'bg-orange-500': true
               }"
             >
-              {{ request.status }}
+              {{ request.state }}
             </span>
           </td>
-          <td class="px-4 py-2">{{ request.role }}</td>
-          <td class="px-4 py-2 text-green-500">{{ request.relatedTeam }}</td>
-          <td class="px-4 py-2">...</td>
+          <td class="px-4 py-2">{{ getServiceName(request.serviceId) }}</td>
+          <td class="px-4 py-2 text-green-500">{{ request.elevatorId }}</td>
+          <td class="px-4 py-2">{{ request.requestId }}</td>
         </tr>
         }
       </tbody>
@@ -62,12 +62,8 @@
     <div class="flex justify-between items-center mt-4">
       <div></div>
       <div class="flex space-x-2">
-        <button class="px-2 py-1 bg-orange-500 text-white rounded">
-          &lt;
-        </button>
-        <button class="px-2 py-1 bg-orange-500 text-white rounded">
-          &gt;
-        </button>
+        <button class="px-2 py-1 bg-orange-500 text-white rounded">&lt;</button>
+        <button class="px-2 py-1 bg-orange-500 text-white rounded">&gt;</button>
       </div>
     </div>
   </div>
