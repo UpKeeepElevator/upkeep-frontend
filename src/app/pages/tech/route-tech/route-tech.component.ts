@@ -94,7 +94,8 @@ export class RouteTechComponent implements OnInit, AfterViewInit {
     return this.currentFault().building.name;
   }
   ContinueRoute() {
-    throw new Error('Method not implemented.');
+    this._modal.dismiss();
+    this._route.navigate(['/technician/maintenance']);
   }
 
   RequestService() {

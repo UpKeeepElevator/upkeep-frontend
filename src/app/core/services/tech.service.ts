@@ -4,11 +4,11 @@ import { map } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { faultListTransform } from '../adapters/fault.adapter';
 import { JobTransform } from '../adapters/job.adapter';
+import { UserListTransform } from '../adapters/user.adapter';
 import { Fault, FaultAPI } from '../models/Fault';
 import { JobApi } from '../models/job';
-import { fake_fault } from '../utils/fake_fault';
 import { UserApi } from '../models/User';
-import { UserListTransform } from '../adapters/user.adapter';
+import { fake_fault } from '../utils/fake_fault';
 
 @Injectable({
   providedIn: 'root',
@@ -26,6 +26,7 @@ export class TechService {
   }
 
   public activeFault = signal<Fault>(fake_fault);
+  public activeMaintenance = signal<Fault>(fake_fault);
 
   SetActiveFault(fault: Fault) {
     this.activeFault.set(fault);
@@ -48,11 +49,11 @@ export class TechService {
       .pipe(map((response) => faultListTransform(response)));
   }
 
-  getTechnicians(){
-    const endpoint = 'Usuario/tecnicos'
-    return this.http.get<UserApi[]>(`${this.apiUrl}/${endpoint}`).pipe(
-      map(users => UserListTransform(users))
-    )
+  getTechnicians() {
+    const endpoint = 'Usuario/tecnicos';
+    return this.http
+      .get<UserApi[]>(`${this.apiUrl}/${endpoint}`)
+      .pipe(map((users) => UserListTransform(users)));
   }
 }
 

@@ -41,4 +41,11 @@ export const TECH_ROUTES: Routes = [
         (client) => client.SuccessTechComponent
       ),
   },
+  {
+    path: 'maintenance',
+    loadComponent: () =>
+      import('./maintenance-report/maintenance-report.component').then(
+        (client) => client.MaintenanceReportComponent
+      ),
+  },
 ];
