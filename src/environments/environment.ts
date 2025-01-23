@@ -8,7 +8,7 @@ export interface env {
 }
 
 export const environment: env = {
-  apiUrl: 'http://localhost:5286/api',
+  apiUrl: 'http://localhost:5298/api',
   production: false,
 };
 
