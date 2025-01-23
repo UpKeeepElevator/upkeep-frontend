@@ -1,0 +1,169 @@
+<div class="p-8 h-screen">
+  <!-- Header -->
+  <div class="flex justify-between items-center mb-8">
+    <h1 class="text-2xl font-bold">
+      Gestionar ruta - {{ routeObj.routeName }}
+    </h1>
+    <a routerLink="/administrator/gestionar/ruta" class="text-orange-500"
+      >Regresar</a
+    >
+  </div>
+
+  <form
+    class="flex h-[95%] flex-col justify-between"
+    [formGroup]="rutaForm"
+    (ngSubmit)="onSubmit()"
+  >
+    <!-- Técnico Info -->
+    <div class="mb-8">
+      <div class="flex items-start gap-4">
+        <div class="relative">
+          <div class="w-24 h-24 bg-gray-300 rounded-lg">
+            <img
+              src="assets/default-user.png"
+              alt="IDTecnico"
+              class="w-full h-full object-cover rounded-lg"
+            />
+          </div>
+          <span class="text-sm text-center block mt-1">IDTecnico</span>
+        </div>
+        <div class="mt-2">
+          <p class="mb-2">
+            <span class="font-semibold">Nombre completo:</span>
+            {{ tecnicoInfo.nombre }}
+          </p>
+          <p>
+            <span class="font-semibold">Estado:</span> {{ tecnicoInfo.estado }}
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex justify-between">
+      <!-- Controles de Fecha y Lugar -->
+      <div class="space-y-4 mb-8 w-1/3">
+        <div>
+          <label class="block mb-2">
+            Fecha
+            <span class="text-orange-500 ml-1">+</span>
+          </label>
+          <div class="relative">
+            <input
+              type="date"
+              formControlName="date"
+              class="w-full p-3 bg-white border border-orange-200 rounded-lg appearance-none pr-10"
+            />
+            <div
+              class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none"
+            >
+              <svg
+                class="w-4 h-4 text-gray-400"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 9l-7 7-7-7"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <label class="block mb-2">
+            Elevador
+            <span class="text-orange-500 ml-1">+</span>
+          </label>
+          <div class="relative">
+            <select
+              formControlName="elevator"
+              class="w-full p-3 bg-white border border-orange-200 rounded-lg appearance-none pr-10"
+            >
+              <option value="">Seleccionar elevador</option>
+              @for (item of elevators; track $index) {
+              <option value="{{ item.id }}">
+                {{ item.building.name }} - Equipo - {{ item.id }}
+              </option>
+              }
+            </select>
+            <div
+              class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none"
+            >
+              <svg
+                class="w-4 h-4 text-gray-400"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 9l-7 7-7-7"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lista de Equipos -->
+      <div class="mb-8">
+        <h3 class="text-lg mb-4">Lista de equipos</h3>
+        <div
+          class="bg-white rounded-lg border border-orange-200 overflow-hidden"
+        >
+          <table class="w-full">
+            <thead>
+              <tr class="border-b">
+                <th class="px-4 py-2 text-left">Marca</th>
+                <th class="px-4 py-2 text-left">IDEquipo</th>
+                <th class="px-4 py-2 text-left">Fecha</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (equipo of equipments; track $index) {
+
+              <tr class="border-b last:border-b-0">
+                <td class="px-4 py-2">{{ "Marca" }}</td>
+                <td class="px-4 py-2">{{ equipo.elevatorId }}</td>
+                <td class="px-4 py-2">{{ equipo.visitDate }}</td>
+              </tr>
+
+              }
+            </tbody>
+          </table>
+        </div>
+        <button
+          type="button"
+          [disabled]="rutaForm.invalid"
+          (click)="addElevator()"
+          class="text-green-500 mt-2"
+        >
+          Agregar
+        </button>
+      </div>
+    </div>
+
+    <!-- Botones de Acción -->
+    <div class="flex gap-4">
+      <button
+        type="button"
+        (click)="cancelar()"
+        class="px-6 py-2 border border-green-500 text-green-500 rounded-lg"
+      >
+        Cancelar
+      </button>
+      <button
+        type="submit"
+        class="px-6 py-2 bg-green-500 text-white rounded-lg"
+      >
+        Guardar
+      </button>
+    </div>
+  </form>
+</div>
