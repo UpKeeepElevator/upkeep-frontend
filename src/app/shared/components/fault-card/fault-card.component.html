@@ -1,0 +1,17 @@
+<div
+  (click)="openFaultDetail()"
+  class="bg-golden-bell-600 rounded-lg p-4 flex justify-between items-center"
+>
+  <div class="text-white">
+    <p>{{ "" }} | {{ fault().building.name }} | {{ fault().elevatorId }} |</p>
+    <p>{{ fault().reporteDate | date : "EEEE dd/MM/yyyy" }}</p>
+    <p>{{ getFaultType(fault().faultTypeId) }}</p>
+    <img
+      src="{{ 'assets/cabinaExample.png' }}"
+      alt="Product"
+      class="w-16 h-16 mt-2"
+    />
+  </div>
+
+  <div class="text-white item">{{ getEstado(fault()) }}</div>
+</div>

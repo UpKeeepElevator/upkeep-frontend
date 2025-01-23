@@ -1,0 +1,6 @@
+@let buttonIcon = icon(); @let buttonName = name(); @let buttonRoute = route();
+
+<button [routerLink]="buttonRoute" [class]="cssClass">
+  <ion-icon [name]="buttonIcon"></ion-icon>
+  <p class="text-black text-sm">{{ buttonName }}</p>
+</button>

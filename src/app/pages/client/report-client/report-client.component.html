@@ -1,0 +1,86 @@
+<form
+  [formGroup]="reportForm"
+  (ngSubmit)="sendForm()"
+  class="w-full h-full flex flex-col gap-6 px-8 py-10 font-urbanist overflow-auto"
+>
+  <h1 class="text-3xl font-bold">Reportar Aquí</h1>
+
+  <div class="flex flex-col gap-2">
+    <div class="flex gap-4">
+      <label for="building">Edificio</label>
+      <select
+        name="building"
+        id=""
+        (change)="getElevators()"
+        formControlName="building"
+      >
+        <option value="" selected>Seleccione un Edificio</option>
+        @for (building of buildings; track building.id) {
+        <option [value]="building.id">{{ building.name }}</option>
+        }
+      </select>
+    </div>
+    <div class="flex gap-4">
+      <label for="elevator">Ascensor</label>
+      <select name="elevator" id="" formControlName="elevator">
+        <option value="" selected>Seleccione un Ascensor</option>
+        @for (elevator of elevators; track elevator.id) {
+        <option [value]="elevator.id">{{ elevator.id }}</option>
+        }
+      </select>
+    </div>
+  </div>
+
+  <div class="flex flex-col gap-2">
+    <label for="fault">¿Qué está pasando?</label>
+    <div class="flex flex-col gap-1">
+      @for (type of faultTypes; track type.id) {
+      <div (click)="selectFault(type)" class="flex gap-2 items-center">
+        <div [class]="selectedStyle(type)"></div>
+        <p>{{ type.name }}</p>
+      </div>
+      }
+    </div>
+  </div>
+
+  <div class="flex flex-col gap-2">
+    <label for="description">Decribe la situación</label>
+    <app-form-textarea
+      [control]="reportForm.controls.description"
+      cssClass="client"
+      formControlName="description"
+      errorMessage="Necesitamos una descripción"
+    />
+  </div>
+
+  <div class="flex flex-col gap-2">
+    <label for="picture">Anexar una foto</label>
+    <div
+      class="h-20 relative flex justify-center items-center border border-solid border-golden-bell-600 rounded-xl"
+    >
+      <input
+        type="file"
+        accept="image/png, image/jpg, image/jpeg"
+        (change)="selectPicture($event)"
+        class="absolute opacity-0 w-full h-full z-10"
+      />
+      <ion-icon name="upload-client"></ion-icon>
+    </div>
+    @if(file){
+    <span>{{ file.name }}</span>
+    }
+  </div>
+
+  <button
+    type="submit"
+    [disabled]="reportForm.invalid"
+    class="self-center flex items-center gap-2 bg-golden-bell-600 text-white font-semibold w-fit rounded-full pl-2 disabled:opacity-50"
+  >
+    <p>Reportar</p>
+    <div
+      class="size-8 flex items-center justify-center p-2 bg-grenadier-600 rounded-[50%] text-lg"
+    >
+      <ion-icon name="arrow-forward"></ion-icon>
+    </div>
+  </button>
+</form>

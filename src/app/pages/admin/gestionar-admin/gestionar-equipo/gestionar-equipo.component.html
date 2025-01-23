@@ -1,0 +1,39 @@
+<div class="flex">
+  <!-- Main Content -->
+  <div class="flex-1 p-8">
+    <h1 class="text-2xl font-bold mb-6">Gestión de equipos</h1>
+
+    <!-- Filters -->
+    <div class="flex space-x-4 mb-6">
+      <select class="px-4 py-2 bg-green-500 text-white rounded">
+        <option>Edificio: Todos</option>
+      </select>
+      <button
+        class="px-4 py-2 bg-green-500 text-white rounded"
+        (click)="onNuevoEquipo()"
+      >
+        + Nuevo equipo
+      </button>
+    </div>
+
+    <!-- Equipment Cards -->
+    <div class="grid grid-cols-4 gap-4">
+      @for (equipo of equipos; track $index) {
+      <div class="border border-orange-500 rounded p-4">
+        <img
+          [src]="'/assets/cabinaExample.png'"
+          alt="Elevator"
+          class="w-full h-40 object-cover mb-2"
+        />
+        <p class="text-orange-500 font-bold">{{ equipo.id }}</p>
+        <p>Marca: {{ equipo.branch }}</p>
+        <p>Cliente: {{ equipo.building.name }}</p>
+        <p>Num. pisos: {{ equipo.floorNumber }}</p>
+        <button class="mt-2 text-orange-500" (click)="onVerDetalles(equipo)">
+          <img src="/assets/cabinaExample.png" alt="Detalles" class="w-6 h-6" />
+        </button>
+      </div>
+      }
+    </div>
+  </div>
+</div>

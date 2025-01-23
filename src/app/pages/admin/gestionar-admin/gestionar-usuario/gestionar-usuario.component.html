@@ -1,0 +1,83 @@
+<div class="p-4 bg-gray-100 min-h-screen">
+  <!-- Main Content -->
+  <div class="ml-20">
+    <h1 class="text-2xl font-bold mb-4">Gestión de usuarios</h1>
+
+    <!-- Filter and Search -->
+    <div class="flex items-center mb-4">
+      <button
+        (click)="onFilter()"
+        class="bg-green-500 text-white px-4 py-2 rounded mr-2"
+      >
+        Filter
+      </button>
+      <input
+        type="text"
+        placeholder="Buscar"
+        class="border border-gray-300 rounded px-2 py-1"
+      />
+    </div>
+
+    <!-- Buttons -->
+    <div class="flex mb-4">
+      <button
+        routerLink="nuevo-cliente"
+        class="bg-green-500 text-white px-4 py-2 rounded mr-2"
+      >
+        Nuevo cliente
+      </button>
+      <button
+        routerLink="nuevo-usuario"
+        class="bg-green-500 text-white px-4 py-2 rounded"
+      >
+        Nuevo tecnico
+      </button>
+    </div>
+
+    <!-- User Table -->
+    <table class="w-full border-collapse border-gray-300">
+      <thead>
+        <tr class="bg-orange-500 text-white">
+          <th class="px-4 py-2"></th>
+          <th class="px-4 py-2">NOMBRE</th>
+          <th class="px-4 py-2">ESTADO</th>
+          <th class="px-4 py-2">ROL</th>
+          <th class="px-4 py-2">CLAVE</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (user of users; track $index) {
+        <tr
+          [routerLink]="getRoleRoute(user.role[0].name_role)"
+          [queryParams]="{ usuario_id: user.id_user }"
+          class="cursor-pointer border-b border-gray-300"
+        >
+          <td class="px-4 py-2 text-center">
+            <input type="checkbox" />
+          </td>
+          <td class="text-center px-4 py-2">
+            <div>{{ user.name_user }}</div>
+            <div class="text-sm text-gray-500">{{ user.email }}</div>
+          </td>
+          <td class="px-4 py-2 text-center">
+            <span
+              class="inline-block px-2 py-1 rounded-full text-white"
+              [ngClass]="{
+                  'bg-green-500': 'Active' === 'Active',
+                }"
+            >
+              {{ "Activo" }}
+            </span>
+          </td>
+          <td class="px-4 py-2 text-center">
+            <a class="cursor-pointer">
+              {{ user.role[0].name_role }}
+            </a>
+          </td>
+          <td class="px-4 py-2 text-center">...</td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>

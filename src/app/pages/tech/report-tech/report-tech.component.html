@@ -1,0 +1,103 @@
+<main class="flex flex-col w-dvw h-dvh bg-mercury-200">
+  <section class="flex items-center justify-between text-3xl px-8 py-4">
+    <app-sidebar-button type="tech"></app-sidebar-button>
+    <app-home-button type="tech-home"></app-home-button>
+  </section>
+
+  <section class="overflow-auto">
+    <form
+      [formGroup]="reportForm"
+      (ngSubmit)="sendForm()"
+      class="w-full flex flex-col gap-6 px-8 pb-[6rem] font-urbanist"
+    >
+      <div class="flex-col">
+        <h1 class="text-3xl font-bold">Reporte de avería</h1>
+        <h3 class="text-lg">Llenalo para completar un pendiente</h3>
+      </div>
+
+      <div class="flex flex-col gap-2">
+        <div class="flex gap-2 flex-col">
+          <label for="section">Seccion de averia</label>
+          <select
+            class="rounded-lg border-[1px] p-1 border-mantis-600"
+            name="section"
+            id=""
+            formControlName="section"
+          >
+            <option value="" selected>Seleccione una sección</option>
+            <!--//TODO: Utilizar secciones del ascensor-->
+            @for (elevator of elevator.sections; track elevator.id) {
+            <option [value]="elevator.elevatorPartId">
+              {{ elevator.elevatorPartName }}
+            </option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-2">
+        <label for="error">Describe el error encontrado</label>
+        <app-form-textarea
+          [control]="reportForm.controls.error"
+          cssClass="tech"
+          formControlName="error"
+          errorMessage="Necesitamos una descripción del error"
+        />
+      </div>
+
+      <div class="flex flex-col gap-2">
+        <label for="solution">¿Cúal fue la reparación realizada?</label>
+        <app-form-textarea
+          [control]="reportForm.controls.solution"
+          cssClass="tech"
+          formControlName="solution"
+          errorMessage="Necesitamos una explicación de la reparación"
+        />
+      </div>
+
+      <!--Evidences-->
+
+      <div class="flex flex-col gap-2">
+        <label for="picture">Anexar algunas fotos</label>
+        <div
+          class="h-20 relative flex justify-center items-center border border-solid border-mantis-600 rounded-xl"
+        >
+          <input
+            type="file"
+            accept="image/png, image/jpg, image/jpeg"
+            (change)="selectPicture($event)"
+            class="absolute opacity-0 w-full h-full z-10"
+          />
+          <ion-icon name="upload"></ion-icon>
+        </div>
+
+        @for (fileObj of file; track $index) {
+
+        <span>{{ fileObj.name }}</span>
+        }
+      </div>
+
+      <!-- <button
+        type="submit"
+        [disabled]="reportForm.invalid"
+        class="self-center flex items-center gap-2 bg-mantis-600 text-white font-semibold w-fit rounded-full pl-2 disabled:opacity-50"
+      >
+        <p>Reportar</p>
+        <div
+          class="size-8 flex items-center justify-center p-2 bg-mantis-600 rounded-[50%] text-lg"
+        >
+          <ion-icon name="action"></ion-icon>
+        </div>
+      </button> -->
+
+      <button
+        type="submit"
+        [disabled]="reportForm.invalid"
+        class="bg-mantis-700 text-white font-bold rounded-xl px-3 py-1 items-center flex justify-center relative disabled:opacity-50"
+      >
+        Enviar reporte
+        <ion-icon name="action" class="absolute right-0 text-3xl"></ion-icon>
+      </button>
+    </form>
+  </section>
+</main>

@@ -1,0 +1,49 @@
+<main class="flex flex-col w-dvw h-dvh bg-mercury-200 font-urbanist">
+  <section class="flex items-center justify-between text-3xl px-8 py-4">
+    <app-sidebar-button type="tech"></app-sidebar-button>
+    <app-home-button type="tech-home"></app-home-button>
+  </section>
+
+  <section class="flex flex-col gap-5 px-7">
+    <div class="flex flex-col gap-2">
+      <h1 class="text-2xl font-bold">Historial de servicios</h1>
+      <h3 class="text-md">Verifica las veces que has ayudado a clientes</h3>
+    </div>
+
+    <div
+      class="flex flex-col justify-between items-center w-1/2 p-2 bg-mantis-700 rounded-xl text-white"
+    >
+      <p class="text-lg">Has trabajado</p>
+      <p class="text-2xl font-bold">{{ jobs.length }}</p>
+      <p class="text-lg">Tareas este mes</p>
+    </div>
+    <!--Tabla-->
+    <div class="border-2 rounded-lg border-mantis-400">
+      <table class="text-xs w-full table">
+        <thead>
+          <tr class="">
+            <th>Categoría</th>
+            <th>Reportado</th>
+            <th>Resuelto</th>
+            <th>Cliente</th>
+            <th>Foto</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (job of jobs; track $index) {
+          <tr class="text-xs">
+            <td>{{ job.job }}</td>
+            <td>{{ job.date | date : "dd/MM/yyyy" }}</td>
+            <td>no date</td>
+            <td>Merarys Nuñez</td>
+            <td>
+              <ion-icon name="attach"></ion-icon>
+            </td>
+          </tr>
+
+          }
+        </tbody>
+      </table>
+    </div>
+  </section>
+</main>
